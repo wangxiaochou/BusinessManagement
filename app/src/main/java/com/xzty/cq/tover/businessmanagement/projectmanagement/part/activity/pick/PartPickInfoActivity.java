@@ -17,12 +17,18 @@ import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
 import com.xzty.cq.tover.businessmanagement.R;
 import com.xzty.cq.tover.businessmanagement.common.MyApplication;
+import com.xzty.cq.tover.businessmanagement.common.eventbus.EventData;
 import com.xzty.cq.tover.businessmanagement.common.factory.ActivityPresenter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.adapter.PartPickWriteInfoAdapter;
+import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.apply.RspPartList;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.pick.RspPickList;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.pick.RspPickOrder;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.pick.PickWriteInfoContract;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.pick.PickWriteInfoPresenter;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Calendar;
 import java.util.List;
@@ -76,12 +82,34 @@ public class PartPickInfoActivity extends ActivityPresenter<PickWriteInfoContrac
         llout_distpartchoosefillinfo_outtimeicon.setOnClickListener(this);
         btn_distpartchoosefillinfo_submit.setOnClickListener(this);
     }
+    //注册EventBus订阅者
+    @Override
+    protected void registEventBus() {
+        super.registEventBus();
+        EventBus.getDefault().register(this);
+    }
+
+    //注销EventBus订阅者
+    @Override
+    protected void cancelEvent() {
+        super.cancelEvent();
+        EventBus.getDefault().unregister(this);
+    }
+
+    /**
+     * 处理通过EventBus传输的数据
+     * @param eventData
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
+    public void setRspData(EventData<RspPickList> eventData){
+        mList = eventData.getEventData();
+        EventBus.getDefault().removeStickyEvent(eventData);
+    }
 
     @Override
     protected void initData() {
 
         super.initData();
-        mList = JSON.parseArray(getIntent().getStringExtra("partList"), RspPickList.class);
         pickOrder = JSON.parseObject(getIntent().getStringExtra("distOrder"), RspPickOrder.class);
         setAdapter();
     }

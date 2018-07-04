@@ -35,6 +35,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.donkingliang.imageselector.utils.ImageSelectorUtils;
 import com.xzty.cq.tover.businessmanagement.R;
 import com.xzty.cq.tover.businessmanagement.common.MyApplication;
+import com.xzty.cq.tover.businessmanagement.common.eventbus.EventData;
 import com.xzty.cq.tover.businessmanagement.common.factory.ActivityPresenter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.adapter.GirdPicItemAdapter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.adapter.PartBackWriteInfoAdapter;
@@ -42,6 +43,10 @@ import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.back.Ba
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.back.BackWriteInfoContract;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.back.BackWriteInfoPresenter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.view.MapContainer;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -122,16 +127,37 @@ public class PartBackWriteInfoActivity extends ActivityPresenter<BackWriteInfoCo
         map_backpartcountset.onCreate(getIntent().getExtras());
     }
 
+    //注册EventBus订阅者
     @Override
-    protected void initData() {
-        super.initData();
-        Intent intent = getIntent();
-        String choosePartsString = intent.getStringExtra("chooseParts");
-        backPartList = JSON.parseArray(choosePartsString, BackPart.class);
+    protected void registEventBus() {
+        super.registEventBus();
+        EventBus.getDefault().register(this);
+    }
+
+    //注销EventBus订阅者
+    @Override
+    protected void cancelEvent() {
+        super.cancelEvent();
+        EventBus.getDefault().unregister(this);
+    }
+
+    /**
+     * 处理通过EventBus传输的数据
+     * @param eventData
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
+    public void setRspData(EventData<BackPart> eventData){
+        backPartList = eventData.getEventData();
         maxPickCount = new double[backPartList.size()];
         for (int i = 0; i < backPartList.size(); i++) {
             maxPickCount[i] = backPartList.get(i).getPickDetailCount();
         }
+        EventBus.getDefault().removeStickyEvent(eventData);
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
         map_container_backpartcountset.setScrollView(sv_backpartcountset);
         fix();
         //初始化地图控制器对象

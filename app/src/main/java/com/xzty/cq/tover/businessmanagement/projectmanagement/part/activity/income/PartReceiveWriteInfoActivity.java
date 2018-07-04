@@ -34,6 +34,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.donkingliang.imageselector.utils.ImageSelectorUtils;
 import com.xzty.cq.tover.businessmanagement.R;
 import com.xzty.cq.tover.businessmanagement.common.MyApplication;
+import com.xzty.cq.tover.businessmanagement.common.eventbus.EventData;
 import com.xzty.cq.tover.businessmanagement.common.factory.ActivityPresenter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.adapter.GirdPicItemAdapter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.adapter.PartReceiveWriteInfoAdapter;
@@ -43,6 +44,10 @@ import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.inc
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.income.ReceiveWriteInfoPresenter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.utils.DateUtil;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.view.MapContainer;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -150,11 +155,6 @@ public class PartReceiveWriteInfoActivity extends ActivityPresenter<ReceiveWrite
         super.initData();
         oostring = getIntent().getStringExtra("deliverOrder");//发货单信息
         outOrder = JSON.parseObject(oostring, DeliverOrder.class);
-        intentStringExtra = getIntent().getStringExtra("choose");//选择的构件
-        deliverDetailList = JSON.parseArray(intentStringExtra, DeliverDetails.class);
-        for (DeliverDetails details : deliverDetailList) {
-            details.isCheck = false;
-        }
         //初始化地图控制器对象
         if (aMap == null) {
             aMap = mMapView.getMap();
@@ -164,6 +164,33 @@ public class PartReceiveWriteInfoActivity extends ActivityPresenter<ReceiveWrite
         initLocation();
         intListener();
         setAdapter();
+    }
+
+    //注册EventBus订阅者
+    @Override
+    protected void registEventBus() {
+        super.registEventBus();
+        EventBus.getDefault().register(this);
+    }
+
+    //注销EventBus订阅者
+    @Override
+    protected void cancelEvent() {
+        super.cancelEvent();
+        EventBus.getDefault().unregister(this);
+    }
+
+    /**
+     * 处理通过EventBus传输的数据
+     * @param eventData
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
+    public void setRspData(EventData<DeliverDetails> eventData){
+        deliverDetailList = eventData.getEventData();
+        for (DeliverDetails details : deliverDetailList) {
+            details.isCheck = false;
+        }
+        EventBus.getDefault().removeStickyEvent(eventData);
     }
 
     private void setAdapter() {

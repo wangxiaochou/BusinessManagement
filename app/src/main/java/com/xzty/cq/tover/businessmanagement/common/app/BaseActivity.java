@@ -33,6 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             setContentView(layId);
             initBefore();
             initWidget();
+            registEventBus();
             initData();
         } else {
             finish();
@@ -124,9 +125,29 @@ public abstract class BaseActivity extends AppCompatActivity {
         this.mPlaceHolderView = placeHolderView;
     }*/
 
+    /**
+     * 处理EventBus事件数据
+     */
+    protected void initEventData(){
+
+    }
+
+    /**
+     * 注册事件消息
+     */
+    protected void registEventBus(){
+
+    }
+
+    /**
+     * 取消事件消息注册
+     */
+    protected void cancelEvent(){};
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        cancelEvent();
         MyApplication.finishActivity(this);
     }
 }

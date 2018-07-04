@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xzty.cq.tover.businessmanagement.R;
+import com.xzty.cq.tover.businessmanagement.common.eventbus.EventData;
 import com.xzty.cq.tover.businessmanagement.common.factory.ActivityPresenter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.activity.apply.PartApplyCreateActivity;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.adapter.CollectAdapter;
@@ -27,6 +28,8 @@ import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.col
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.collect.CollectPresenter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.utils.DateUtil;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.view.MyDatePickerDialog;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
@@ -269,7 +272,7 @@ public class PartCollectActivity extends ActivityPresenter<CollectContract.Prese
                 //采购分配
                 if (thisTimeSelectedPartTemp.size() > 0) {
                     Intent intent1 = new Intent(this, CollectInfoActivity.class);
-                    intent1.putExtra("data", (Serializable) thisTimeSelectedPartTemp);
+                    EventBus.getDefault().postSticky(new EventData<RspCollect>(thisTimeSelectedPartTemp));
                     startActivity(intent1);
                 } else {
                     Toast.makeText(this, "请至少选择一种构件", Toast.LENGTH_SHORT).show();

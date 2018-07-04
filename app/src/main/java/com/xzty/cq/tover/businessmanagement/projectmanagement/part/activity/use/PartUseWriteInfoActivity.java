@@ -36,13 +36,19 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.donkingliang.imageselector.utils.ImageSelectorUtils;
 import com.xzty.cq.tover.businessmanagement.R;
 import com.xzty.cq.tover.businessmanagement.common.MyApplication;
+import com.xzty.cq.tover.businessmanagement.common.eventbus.EventData;
 import com.xzty.cq.tover.businessmanagement.common.factory.ActivityPresenter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.adapter.GirdPicItemAdapter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.adapter.PartUseWriteInfoAdapter;
+import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.apply.RspPartList;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.use.AllModel;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.use.UseWriteInfoContract;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.use.UseWriteInfoPresenter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.view.MapContainer;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -120,6 +126,39 @@ public class PartUseWriteInfoActivity extends ActivityPresenter<UseWriteInfoCont
         tv_toolbarTitle.setText("领用信息填写");
     }
 
+    //注册EventBus订阅者
+    @Override
+    protected void registEventBus() {
+        super.registEventBus();
+        EventBus.getDefault().register(this);
+    }
+
+    //注销EventBus订阅者
+    @Override
+    protected void cancelEvent() {
+        super.cancelEvent();
+        EventBus.getDefault().unregister(this);
+    }
+
+    /**
+     * 处理通过EventBus传输的数据
+     * @param eventData
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
+    public void setRspData(EventData<AllModel> eventData){
+        allPartList = eventData.getEventData();
+        maxPartCount = new double[allPartList.size()];
+        for (int i = 0; i < allPartList.size(); i++) {
+            maxPartCount[i] = allPartList.get(i).getCollectDetailCount();
+        }
+        mLayoutManage = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mAdapter = new PartUseWriteInfoAdapter(R.layout.part_use_writeinfo_recycle_item, allPartList);
+        recycle_pickpartcountset.setLayoutManager(mLayoutManage);
+        recycle_pickpartcountset.setAdapter(mAdapter);
+        mAdapter.setOnItemChildClickListener(this);
+    }
+
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void initData() {
@@ -132,7 +171,7 @@ public class PartUseWriteInfoActivity extends ActivityPresenter<UseWriteInfoCont
         initLocation();
         init();
         proScroll();
-        String choosePartsString = getIntent().getStringExtra("chooseParts");
+ /*       String choosePartsString = getIntent().getStringExtra("chooseParts");
         allPartList = JSON.parseArray(choosePartsString, AllModel.class);
         maxPartCount = new double[allPartList.size()];
         for (int i = 0; i < allPartList.size(); i++) {
@@ -142,7 +181,7 @@ public class PartUseWriteInfoActivity extends ActivityPresenter<UseWriteInfoCont
         mAdapter = new PartUseWriteInfoAdapter(R.layout.part_use_writeinfo_recycle_item, allPartList);
         recycle_pickpartcountset.setLayoutManager(mLayoutManage);
         recycle_pickpartcountset.setAdapter(mAdapter);
-        mAdapter.setOnItemChildClickListener(this);
+        mAdapter.setOnItemChildClickListener(this);*/
         btn_pickpartcountset_upload.setOnClickListener(this);
         btn_pickpartcountset_submit.setOnClickListener(this);
     }

@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xzty.cq.tover.businessmanagement.R;
 import com.xzty.cq.tover.businessmanagement.common.MyApplication;
+import com.xzty.cq.tover.businessmanagement.common.eventbus.EventData;
 import com.xzty.cq.tover.businessmanagement.common.factory.ActivityPresenter;
 import com.xzty.cq.tover.businessmanagement.common.model.RspLogin;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.adapter.PartApplyInfoAdapter;
@@ -30,6 +31,10 @@ import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.apply.R
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.apply.SearchInfoContract;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.apply.SearchInfoPresenter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.utils.DateUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -108,12 +113,38 @@ public class PartApplyInfoActivity extends ActivityPresenter<SearchInfoContract.
         mLayoutmanager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
     }
 
+    //注册EventBus订阅者
+    @Override
+    protected void registEventBus() {
+        super.registEventBus();
+        EventBus.getDefault().register(this);
+    }
+
+    //注销EventBus订阅者
+    @Override
+    protected void cancelEvent() {
+        super.cancelEvent();
+        EventBus.getDefault().unregister(this);
+    }
+
+    /**
+     * 处理通过EventBus传输的数据
+     * @param eventData
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
+    public void setRspData(EventData<RspPartList> eventData){
+        mList = eventData.getEventData();
+        mPresenter.search(mList, partName, partBatch);
+        //移除粘性事件
+        EventBus.getDefault().removeStickyEvent(eventData);
+    }
+
 
     @Override
     protected void initData() {
         super.initData();
-        mList = (List<RspPartList>) getIntent().getSerializableExtra("PARTLIST");
-        mPresenter.search(mList, partName, partBatch);
+/*        mList = (List<RspPartList>) getIntent().getSerializableExtra("PARTLIST");
+        mPresenter.search(mList, partName, partBatch);*/
         //给Spinner设置监听
         spinner_chooseset_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 

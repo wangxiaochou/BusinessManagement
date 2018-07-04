@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xzty.cq.tover.businessmanagement.R;
+import com.xzty.cq.tover.businessmanagement.common.eventbus.EventData;
 import com.xzty.cq.tover.businessmanagement.common.factory.ActivityPresenter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.adapter.PartPickChooseAdapter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.pick.RspPickList;
@@ -30,6 +31,8 @@ import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.pic
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.pick.PickChoosePresenter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.utils.DateUtil;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.view.MyDatePickerDialog;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -250,9 +253,8 @@ public class ChoosePickActivity extends ActivityPresenter<PickChooseContract.Pre
     @Override
     public void startNota() {
         Intent intent = new Intent(this, PartPickInfoActivity.class);
-        String s = JSON.toJSONString(chooseList).toString();
         String s2 = intentString;
-        intent.putExtra("partList", s);
+        EventBus.getDefault().postSticky(new EventData<RspPickList>(chooseList));
         intent.putExtra("distOrder", s2);
         startActivity(intent);
     }

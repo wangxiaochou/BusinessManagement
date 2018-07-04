@@ -14,12 +14,15 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xzty.cq.tover.businessmanagement.R;
+import com.xzty.cq.tover.businessmanagement.common.eventbus.EventData;
 import com.xzty.cq.tover.businessmanagement.common.factory.ActivityPresenter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.adapter.PartReceiveChooseAdapter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.deliver.DeliverDetails;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.deliver.DeliverOrder;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.income.ReceiveChooseContract;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.income.ReceiveChoosePresenter;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -148,9 +151,8 @@ public class PartReceiveChooseActivity extends ActivityPresenter<ReceiveChooseCo
     }
 
     private void commit(List<DeliverDetails> finalList) {
-        String s = JSON.toJSONString(finalList);
         Intent intent = new Intent(this,PartReceiveWriteInfoActivity.class);
-        intent.putExtra("choose", s);
+        EventBus.getDefault().postSticky(new EventData<DeliverDetails>(finalList));
         intent.putExtra("deliverOrder", deliverString);
         startActivity(intent);
     }

@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xzty.cq.tover.businessmanagement.R;
+import com.xzty.cq.tover.businessmanagement.common.eventbus.EventData;
 import com.xzty.cq.tover.businessmanagement.common.factory.ActivityPresenter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.adapter.PartUseChooseAdapter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.use.AllModel;
@@ -27,6 +28,8 @@ import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.use
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.use.UseChoosePresenter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.utils.DateUtil;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.view.MyDatePickerDialog;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -214,7 +217,8 @@ public class PartUseActivity extends ActivityPresenter<UseChooseContract.Present
             case R.id.btn_receiveparts_submit:
                 if (thisTimeSelectedPartTemp.size() > 0) {
                     Intent intent = new Intent(this, PartUseWriteInfoActivity.class);
-                    intent.putExtra("chooseParts", JSON.toJSONString(thisTimeSelectedPartTemp));
+                    //使用EventBus传输大数据
+                    EventBus.getDefault().postSticky(new EventData<AllModel>(thisTimeSelectedPartTemp));
                     startActivityForResult(intent, 50);
                 } else {
                     Toast.makeText(this, "请至少勾选一种构件", Toast

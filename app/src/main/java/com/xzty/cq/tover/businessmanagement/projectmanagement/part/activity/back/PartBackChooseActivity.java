@@ -18,11 +18,14 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xzty.cq.tover.businessmanagement.R;
+import com.xzty.cq.tover.businessmanagement.common.eventbus.EventData;
 import com.xzty.cq.tover.businessmanagement.common.factory.ActivityPresenter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.adapter.PartBackChooseAdapter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.back.BackPart;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.back.BackChooseContract;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.back.BackChoosePresenter;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -205,7 +208,7 @@ public class PartBackChooseActivity extends ActivityPresenter<BackChooseContract
                 if (backPartList.size() > 0) {
                     Intent intent = new Intent(this,
                             PartBackWriteInfoActivity.class);
-                    intent.putExtra("chooseParts", JSON.toJSONString(tempBackPartList));
+                    EventBus.getDefault().postSticky(new EventData<BackPart>(tempBackPartList));
                     startActivityForResult(intent, 50);
                 } else {
                     Toast.makeText(this, "请至少选择一种构件", Toast

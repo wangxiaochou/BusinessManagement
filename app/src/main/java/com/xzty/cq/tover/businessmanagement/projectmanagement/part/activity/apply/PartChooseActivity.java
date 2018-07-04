@@ -16,12 +16,15 @@ import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xzty.cq.tover.businessmanagement.R;
 import com.xzty.cq.tover.businessmanagement.common.MyApplication;
+import com.xzty.cq.tover.businessmanagement.common.eventbus.EventData;
 import com.xzty.cq.tover.businessmanagement.common.factory.Account;
 import com.xzty.cq.tover.businessmanagement.common.factory.ActivityPresenter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.adapter.ChoosePartAdapter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.apply.RspPartList;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.apply.ChooseContract;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.apply.ChoosePresenter;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
@@ -237,8 +240,9 @@ public class PartChooseActivity extends ActivityPresenter<ChooseContract.Present
         if (mList.size() <= 0) {
             Toast.makeText(this, "请至少选择一个构件", Toast.LENGTH_SHORT).show();
         } else {
+            //使用EventBus传输数据
+            EventBus.getDefault().postSticky(new EventData<RspPartList>(mList));
             Intent intent = new Intent(this, PartApplyInfoActivity.class);
-            intent.putExtra("PARTLIST", (Serializable) mList);
             startActivity(intent);
         }
     }

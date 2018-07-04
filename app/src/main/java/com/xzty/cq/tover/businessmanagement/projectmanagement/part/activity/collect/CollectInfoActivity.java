@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.xzty.cq.tover.businessmanagement.R;
+import com.xzty.cq.tover.businessmanagement.common.eventbus.EventData;
 import com.xzty.cq.tover.businessmanagement.common.factory.ActivityPresenter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.adapter.ApplyListPersonSpinnerAdapter;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.adapter.CollectInfoAdapter;
@@ -20,6 +21,10 @@ import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.Emp;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.collect.RspCollect;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.collect.CollectInfoContract;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.presenter.collect.CollectInfoPresenter;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,8 +74,7 @@ public class CollectInfoActivity extends ActivityPresenter<CollectInfoContract.P
     @Override
     protected void initData() {
         super.initData();
-        mLayoutManage = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        init();
+      /*  mLayoutManage = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);*/
         mPresenter.getAllBuyer();
         spinner_distinfofillin_buyname = (Spinner) findViewById(R.id.spinner_distinfofillin_buyname);
         spinner_distinfofillin_buyname.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -87,6 +91,36 @@ public class CollectInfoActivity extends ActivityPresenter<CollectInfoContract.P
         btn_distinfofillin_submit.setOnClickListener(this);
     }
 
+    //注册EventBus订阅者
+    @Override
+    protected void registEventBus() {
+        super.registEventBus();
+        EventBus.getDefault().register(this);
+    }
+
+    //注销EventBus订阅者
+    @Override
+    protected void cancelEvent() {
+        super.cancelEvent();
+        EventBus.getDefault().unregister(this);
+    }
+
+    /**
+     * 处理通过EventBus传输的数据
+     * @param eventData
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
+    public void setRspData(EventData<RspCollect> eventData){
+        mLayoutManage = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        List<RspCollect> mList = new ArrayList<>();
+        mList = eventData.getEventData();
+        choose = JSON.toJSONString(eventData.getEventData());
+        recycle_info.setLayoutManager(mLayoutManage);
+        recycle_info.setAdapter(new CollectInfoAdapter(R.layout.part_collect_info_recycle_item, mList));
+        EventBus.getDefault().removeStickyEvent(eventData);
+    }
+
+/*
     private void init() {
         Intent intent = getIntent();
         choose = JSON.toJSONString(intent.getSerializableExtra("data"));
@@ -95,6 +129,7 @@ public class CollectInfoActivity extends ActivityPresenter<CollectInfoContract.P
         recycle_info.setLayoutManager(mLayoutManage);
         recycle_info.setAdapter(new CollectInfoAdapter(R.layout.part_collect_info_recycle_item, mList));
     }
+*/
 
     @Override
     public void showError(String str) {
