@@ -11,7 +11,7 @@ import com.xzty.cq.tover.businessmanagement.common.factory.BaseContract;
 public interface LoginContract {
 
     interface View extends BaseContract.View<Presenter> {
-        //登录成功
+            //登录成功
         void loginSuccess();
     }
 
