@@ -34,7 +34,7 @@ import butterknife.BindView;
 /**
  * author zzl
  * Created 2018/5/7
- * explain 选择构件
+ * explain 选择 构件
  */
 
 public class PartChooseActivity extends ActivityPresenter<ChooseContract.Presenter>
