@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="10dp">
+
+    <CheckBox
+        android:id="@+id/item_cb_distpartchoose_part"
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        />
+
+    <TextView
+        android:id="@+id/tv_space"
+        android:layout_width="0dp"
+        android:layout_weight="0.8"
+        android:layout_height="wrap_content"
+        android:text="区域"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/item_tv_distpartchoose_partname"
+        android:layout_width="0dp"
+        android:layout_weight="0.8"
+        android:layout_height="wrap_content"
+        android:text="名称"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/item_tv_distpartchoose_partno"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="编号"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
+        />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="0.8"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/item_tv_distpartchoose_partcount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            />
+        <TextView
+            android:id="@+id/item_tv_distpartchoose_unit1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="件"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/item_tv_distpartchoose_expettime"
+        android:layout_width="0dp"
+        android:layout_weight="1.2"
+        android:layout_height="wrap_content"
+        android:hint="2017-12-13"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/item_tv_distpartchoose_partbatch"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="批次"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
+        />
+
+
+</LinearLayout>

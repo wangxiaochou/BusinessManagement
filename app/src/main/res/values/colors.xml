@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="loginBlue">#2597e8</color>
+    <color name="loginGray">#dddddd</color>
+    <color name="functionGray">#ececed</color>
+    <color name="functionyellow">#f9a101</color>
+    <color name="home_txt_nature_color">#d0d0d0</color>
+    <color name="home_txt_selected_color">#55afef</color>
+    <color name="textPrimary">#4e5864</color>
+    <color name="textSecond">#8d9ca9</color>
+    <color name="white">#ffffff</color>
+    <color name="item_text_ok">#53b259</color>
+    <color name="item_text_no">#d51f08</color>
+    <color name="lins">#FFEAEAEA</color>
+    <color name="background_gray">#eeeeee</color>
+</resources>

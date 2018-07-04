@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.xzty.cq.tover.businessmanagement">
+
+    <!-- 高德地图 -->
+    <!-- 允许程序打开网络套接字 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 允许程序设置内置sd卡的写权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 允许程序获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 允许程序访问WiFi网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 允许程序读写手机状态和身份 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- 网络相关的权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 读取存储权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!-- > 拨打电话的权限< -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CALL" />
+    <!-- 用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 用于获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 用于访问网络，网络定位需要上网 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 用于读取手机当前的状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 用于写入缓存数据到扩展存储卡 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 用于申请调用A-GPS模块 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <!-- 用于申请获取蓝牙信息进行室内定位 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!-- 照相权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- 高德地图 -->
+
+
+    <!-- 权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- 构件权限：未整理 -->
+    <!-- Required  一些系统要求的权限，如访问网络等 -->
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- Optional for location -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- 高德地图相关 -->
+    <!-- 允许程序打开网络套接字 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 允许程序设置内置sd卡的写权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 允许程序获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 允许程序访问WiFi网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 允许程序读写手机状态和身份 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:name=".common.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- 高德地图 -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="89d6725ac41182dc7723f051e8d73ce0" />
+
+        <activity android:name=".common.main.MainActivity">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity android:name=".common.LaunchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".projectmanagement.project.all.ProjectListActivity" />
+        <activity android:name=".common.LoginActivity" />
+        <activity android:name=".projectmanagement.project.details.ProjectDetailsActivity" />
+        <activity android:name=".projectmanagement.project.AllManageItem" />
+        <activity android:name=".projectmanagement.part.activity.PartFunctionActivity" />
+        <activity android:name=".projectmanagement.part.activity.apply.PartApplyCreateActivity" />
+        <activity android:name=".projectmanagement.part.activity.collect.PartCollectActivity" />
+        <activity android:name=".projectmanagement.part.activity.pick.PartPickOrderActivity" />
+        <activity android:name=".projectmanagement.part.activity.deliver.PartDeliverOderActivity" />
+        <activity android:name=".projectmanagement.part.activity.income.PartReceiveOrderActivity" />
+        <activity android:name=".projectmanagement.part.activity.use.PartUseActivity" />
+        <activity android:name=".projectmanagement.part.activity.back.PartBackChooseActivity" />
+        <activity android:name=".projectmanagement.part.activity.apply.PartChooseActivity" />
+        <activity android:name=".projectmanagement.part.activity.apply.PartApplyInfoActivity" />
+        <activity android:name=".projectmanagement.part.activity.apply.PartApplyDetailsActivity" />
+        <activity android:name=".projectmanagement.part.activity.apply.ApplyOrderPartDetialActivity" />
+        <activity android:name=".projectmanagement.part.activity.collect.CollectInfoActivity" />
+        <activity android:name=".projectmanagement.part.activity.pick.ChoosePickActivity" />
+        <activity android:name=".projectmanagement.part.activity.pick.PartPickInfoActivity" />
+        <activity android:name=".projectmanagement.part.activity.pick.PartPickDetailsActivity" />
+        <activity android:name=".projectmanagement.part.activity.deliver.DeliverWriteInfoActivity" />
+        <activity
+            android:name="com.donkingliang.imageselector.ClipImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name="com.donkingliang.imageselector.ImageSelectorActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name="com.donkingliang.imageselector.PreviewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name="com.donkingliang.imageselector.ClipImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".projectmanagement.part.activity.income.PartReceiveDetailsActivity" />
+        <activity android:name=".projectmanagement.part.activity.income.PartReceiveChooseActivity" />
+        <activity android:name=".projectmanagement.part.activity.income.PartReceiveWriteInfoActivity" />
+        <activity android:name=".projectmanagement.part.activity.income.PartReceiveFeedBackActivity" />
+        <activity android:name=".projectmanagement.part.activity.use.PartUseWriteInfoActivity" />
+        <activity android:name=".projectmanagement.part.activity.back.PartBackWriteInfoActivity" />
+        <activity android:name=".projectmanagement.tool.activity.ToolFunctionActivity" />
+        <activity android:name=".projectmanagement.tool.activity.projectmanagedepartment.apply.ToolApplyListActivity" />
+        <activity android:name=".projectmanagement.tool.activity.projectmanagedepartment.apply.ToolApplyDetailsActivity" />
+        <activity android:name=".projectmanagement.tool.activity.projectmanagedepartment.affirm.ToolPMApplyAffirmActivity" />
+        <activity android:name=".projectmanagement.tool.activity.projectmanagedepartment.affirm.ToolPMApplyAffirmDetailsActivity" />
+        <activity android:name=".projectmanagement.tool.activity.pickdepartment.affirm.ToolPDApplyOrderAffirmActivity" />
+        <activity android:name=".projectmanagement.tool.activity.pickdepartment.affirm.ToolPDApplyAffirmDetailsActivity" />
+        <activity android:name=".projectmanagement.tool.activity.pickdepartment.distribute.ToolPDDistributeActivity" />
+        <activity android:name=".projectmanagement.tool.activity.pickdepartment.distribute.ToolPPDistributeOrderActivity" />
+        <activity android:name=".projectmanagement.tool.activity.pickdepartment.diliver.ToolPDDiliverActivity" />
+        <activity android:name=".projectmanagement.tool.activity.projectmanagedepartment.diliver.ToolPMDiliverActivity" />
+        <activity android:name=".projectmanagement.tool.activity.other.diliver.OtherDiliverOrderActivity" />
+        <activity android:name=".projectmanagement.tool.activity.other.diliver.OtherDiliverOrderDetailsActivity" />
+        <activity android:name=".projectmanagement.tool.activity.other.receive.OtherReceiveActivity" />
+        <activity android:name=".projectmanagement.tool.activity.other.receive.OtherReceiveListActivity" />
+        <activity android:name=".projectmanagement.tool.activity.other.receive.OtherReceiveDetailsActivity" />
+        <activity android:name=".projectmanagement.tool.activity.other.back.ToolOtherBackApplyActivity" />
+        <activity android:name=".projectmanagement.tool.activity.other.back.ToolOtherBackListActivity" />
+        <activity android:name=".projectmanagement.tool.activity.other.back.ToolOtherBackDetailsActivity" />
+        <activity android:name=".projectmanagement.tool.activity.projectmanagedepartment.back.ToolPMBackAuditActivity" />
+        <activity android:name=".projectmanagement.tool.activity.projectmanagedepartment.back.ToolPMBackAuditDetailsActivity" />
+        <activity android:name=".projectmanagement.tool.activity.pickdepartment.back.ToolPDBackAuditListActivity" />
+        <activity android:name=".projectmanagement.tool.activity.pickdepartment.back.ToolPDBackAuditDetailsActivity" />
+        <activity android:name=".projectmanagement.tool.activity.pickdepartment.distribute.ToolPPDistributeOrderDetailsActivity" />
+        <activity android:name=".projectmanagement.tool.activity.pickdepartment.distribute.ToolPDInActivity" />
+        <activity android:name=".projectmanagement.part.activity.promote.PartPromoteNumListActivity"></activity>
+    </application>
+
+</manifest>

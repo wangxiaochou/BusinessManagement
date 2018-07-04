@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">企业管理</string>
+    <string name="main_home">首页</string>
+    <string name="main_manage">管理</string>
+    <string name="main_finance">财务</string>
+    <string name="main_human">人力</string>
+    <string name="main_business">商务</string>
+</resources>

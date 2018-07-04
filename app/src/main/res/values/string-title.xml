@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_home">home</string>
+    <string name="title_manage">manage</string>
+    <string name="title_finance">finance</string>
+    <string name="title_human">human</string>
+    <string name="title_business">business</string>
+</resources>

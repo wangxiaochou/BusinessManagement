@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_shape"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="5dp"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical"
+    android:layout_marginBottom="10dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="采购单号：" />
+
+        <TextView
+            android:id="@+id/item_tv_distorder_distno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="QR-JBDSB-C20171208"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NO:" />
+
+            <TextView
+                android:id="@+id/item_tv_distorder_listno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="分配人：" />
+
+            <TextView
+                android:id="@+id/item_tv_distorder_assigner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="严凤林" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="采购人：" />
+
+            <TextView
+                android:id="@+id/item_tv_distorder_buyer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="严凤林" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="操作状态：" />
+
+            <Button
+                android:id="@+id/item_btn_distorder_work"
+                android:layout_width="56sp"
+                android:layout_height="24sp"
+                android:textSize="10sp"
+                android:background="@drawable/btn_apply_create"
+                android:tag="item_btn_distorder_work"
+                android:text="确认"
+                />
+            <TextView
+                android:id="@+id/item_tv_distorder_hadbuy"
+                android:layout_width="0dp"
+                android:layout_weight="0.9"
+                android:layout_height="wrap_content"
+                android:text="采购完"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                />
+            <ImageView
+                android:id="@+id/item_iv_distorder_state"
+                android:layout_width="18sp"
+                android:layout_height="18sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="申请时间：" />
+
+        <TextView
+            android:id="@+id/item_tv_distorder_expettime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="2017-12-12" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="5dp"
+    android:descendantFocusability="blocksDescendants">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/item_tv_backnmain_listno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="1"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+
+        <CheckBox
+            android:id="@+id/item_cb_backnmain_checkone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="0.8"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_space"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="区域" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/item_tv_backnmain_partname"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:hint="名称"
+        android:gravity="center"
+        android:layout_gravity="center_vertical" />
+
+    <TextView
+        android:id="@+id/item_tv_backnmain_partno"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:hint="编号"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:layout_gravity="center_vertical" />
+
+    <TextView
+        android:id="@+id/item_tv_backnmain_pickbatch"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:hint="1批"
+        android:gravity="center"
+        android:layout_gravity="center_vertical" />
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/item_tv_backnmain_pickcount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:hint="5"/>
+        <TextView
+            android:id="@+id/item_tv_backnmain_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="件"/>
+
+    </LinearLayout>
+
+</LinearLayout>

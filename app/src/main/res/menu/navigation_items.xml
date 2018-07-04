@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="@string/main_home"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/manage"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="@string/main_manage"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/finance"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="@string/main_finance"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/human"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="@string/main_human"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/business"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="@string/main_business"
+        app:showAsAction="ifRoom" />
+</menu>
