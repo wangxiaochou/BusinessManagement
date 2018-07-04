@@ -71,7 +71,7 @@ import rx.Observable;
 
 public interface RemoteService {
     /**
-     * 登录接口
+     *    登录接口
      *
      * @return
      */
