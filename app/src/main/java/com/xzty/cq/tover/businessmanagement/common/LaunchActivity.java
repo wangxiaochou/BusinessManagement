@@ -102,7 +102,7 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
     private void isLogin(){
         Account.load(LaunchActivity.this);
         ReqLogin model = Account.getUserInfo();
-        //是否存在账号密码
+          //是否存在账号密码
         if (!TextUtils.isEmpty(model.getUsername()) || !TextUtils.isEmpty(model.getUsername())) {
             finish();
             startActivity(new Intent(LaunchActivity.this, MainActivity.class));
