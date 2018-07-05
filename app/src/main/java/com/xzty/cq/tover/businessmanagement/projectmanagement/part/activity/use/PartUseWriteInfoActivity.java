@@ -28,6 +28,7 @@ import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.UiSettings;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
@@ -224,12 +225,12 @@ public class PartUseWriteInfoActivity extends ActivityPresenter<UseWriteInfoCont
 
     private void initMap() {
         myLocationStyle = new MyLocationStyle();
-        myLocationStyle.showMyLocation(false);
-        // myLocationStyle.myLocationIcon(BitmapDescriptorFactory.fromResource(R.drawable.myself_location));//设置当前位置图标
+        myLocationStyle.showMyLocation(true);
+        myLocationStyle.myLocationIcon(BitmapDescriptorFactory.fromResource(R.drawable.myself_location_1));//设置当前位置图标
         aMap.setMyLocationEnabled(true);
         //设置定位点的范围为透明
-        myLocationStyle.strokeColor(Color.argb(1, 0, 0, 255));// 设置圆形的边框颜色
-        myLocationStyle.radiusFillColor(Color.argb(1, 0, 200, 0));// 设置圆形的填充颜色
+        myLocationStyle.strokeColor(Color.argb(0, 0, 0, 255));// 设置圆形的边框颜色
+        myLocationStyle.radiusFillColor(Color.argb(0, 0, 200, 0));// 设置圆形的填充颜色
         myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATE);//定位一次，且将视角移动到地图中心点。
         aMap.setMyLocationStyle(myLocationStyle);
         mUiSettings = aMap.getUiSettings();//实例化UiSettings类对象
