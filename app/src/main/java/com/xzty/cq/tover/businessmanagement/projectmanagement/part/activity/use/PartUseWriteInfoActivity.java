@@ -228,8 +228,8 @@ public class PartUseWriteInfoActivity extends ActivityPresenter<UseWriteInfoCont
         // myLocationStyle.myLocationIcon(BitmapDescriptorFactory.fromResource(R.drawable.myself_location));//设置当前位置图标
         aMap.setMyLocationEnabled(true);
         //设置定位点的范围为透明
-        myLocationStyle.strokeColor(Color.argb(0, 0, 0, 0));// 设置圆形的边框颜色
-        myLocationStyle.radiusFillColor(Color.argb(0, 0, 0, 0));// 设置圆形的填充颜色
+        myLocationStyle.strokeColor(Color.argb(1, 0, 0, 255));// 设置圆形的边框颜色
+        myLocationStyle.radiusFillColor(Color.argb(1, 0, 200, 0));// 设置圆形的填充颜色
         myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATE);//定位一次，且将视角移动到地图中心点。
         aMap.setMyLocationStyle(myLocationStyle);
         mUiSettings = aMap.getUiSettings();//实例化UiSettings类对象
