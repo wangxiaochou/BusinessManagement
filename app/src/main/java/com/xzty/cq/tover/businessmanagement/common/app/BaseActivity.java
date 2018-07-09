@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
  * explain 封装基类activity
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity{
     //  protected PlaceHolderView mPlaceHolderView;
 
     @Override
@@ -150,4 +150,5 @@ public abstract class BaseActivity extends AppCompatActivity {
         cancelEvent();
         MyApplication.finishActivity(this);
     }
+
 }

@@ -4,8 +4,12 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.huawei.hms.api.ConnectionResult;
+import com.huawei.hms.api.HuaweiApiClient;
+import com.huawei.hms.support.api.push.HuaweiPush;
 import com.xzty.cq.tover.businessmanagement.R;
 import com.xzty.cq.tover.businessmanagement.common.app.BaseActivity;
 import com.xzty.cq.tover.businessmanagement.common.factory.Account;
@@ -22,7 +26,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  * explain 启动页 初始化数据
  */
 
-public class LaunchActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks {
+public class LaunchActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks,HuaweiApiClient.ConnectionCallbacks,HuaweiApiClient.OnConnectionFailedListener {
     //需要申请的权限
     private String[] perms = new String[]{
             Manifest.permission.INTERNET,
@@ -37,6 +41,8 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
 
     private Handler delayedHandler = new Handler();
 
+    private HuaweiApiClient client;
+
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_launch;
@@ -45,6 +51,8 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
     @Override
     protected void initData() {
         super.initData();
+        //初始化华为推送服务
+        initHuawei();
         //是否存在权限
         if (EasyPermissions.hasPermissions(this, perms)) {
             delayedHandler.postDelayed(new Runnable() {
@@ -61,6 +69,15 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
                     perms);
             Toast.makeText(this, "请添加权限后再进入App", Toast.LENGTH_SHORT).show();
         }
+
+    }
+
+    private void initHuawei() {
+        client = new HuaweiApiClient.Builder(this).addApi(HuaweiPush.PUSH_API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
+        client.connect(this);
     }
 
     @Override
@@ -110,11 +127,27 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
             finish();
             startActivity(new Intent(LaunchActivity.this,LoginActivity.class));
         }
+
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         MyApplication.getInstance().removeActivity(this);
+    }
+
+    @Override
+    public void onConnected() {
+        Log.e("TAG","华为推送连接成功");
+    }
+
+    @Override
+    public void onConnectionSuspended(int cause) {
+        Log.e("TAG","华为推送连接失败"+cause);
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult result) {
+        Log.e("TAG","华为推送连接失败"+result.getErrorCode());
     }
 }

@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -58,4 +59,6 @@ dependencies {
     implementation 'com.amap.api:3dmap:latest.integration'
     implementation 'com.amap.api:location:latest.integration'
     implementation 'com.amap.api:search:latest.integration'
+    //华为推送
+    implementation 'com.huawei.android.hms:push:2.6.1.301'
 }

@@ -18,6 +18,8 @@ allprojects {
         google()
         jcenter()
         maven { url "https://jitpack.io" }
+        //华为推送仓库
+        maven{ url "http://developer.huawei.com/repo/"}
     }
 }
 

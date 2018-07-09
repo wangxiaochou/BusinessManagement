@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.multidex.MultiDex;
 import android.util.Log;
+
+import com.xzty.cq.tover.businessmanagement.common.utils.Rom;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,10 +28,24 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        MultiDex.install(this);
         instance = this;
         //注册Activity的监听
         registerAcivityListener();
+        //判断当前手机系统
+        if (Rom.isEmui()) {
+            //注册华为推送
+
+        } else {
+
+        }
     }
+
+   /* @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }*/
 
     public static MyApplication getInstance() {
         return instance;
