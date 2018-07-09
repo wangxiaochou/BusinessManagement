@@ -30,7 +30,7 @@ import rx.schedulers.Schedulers;
 public class PickWriteInfoHelper {
     public static void commit(String firm, String contractNo, String expectOutTime, String outNote, String distId, String partList, final DataSourse.Callback<RspLogin> callback) {
         RemoteService service = NetWork.remote(RemoteService.class);
-        final List<RspPickList> list =  JSON.parseArray(partList, RspPickList.class);
+        final List<RspPickList> list = JSON.parseArray(partList, RspPickList.class);
         Account.load(MyApplication.getInstance());
         String projectId = Account.getProjectId();
         String outUserId = Account.getemployId();
@@ -67,7 +67,7 @@ public class PickWriteInfoHelper {
 
             @Override
             public void onError(Throwable e) {
-                callback.onDataNotAvailable("请求失败"+e.getMessage());
+                callback.onDataNotAvailable("请求失败" + e.getMessage());
             }
 
             @Override
@@ -80,5 +80,65 @@ public class PickWriteInfoHelper {
                 }
             }
         });
+    }
+
+    public static List<RspPickList> itemClick(List<RspPickList> mList, int position) {
+        if (mList.get(position).isCheck) {
+            mList.get(position).isCheck = false;
+        } else {
+            mList.get(position).isCheck = true;
+        }
+        return mList;
+    }
+
+    public static List<RspPickList> chooseAll(List<RspPickList> mList, boolean status) {
+        if (status) {
+            for (RspPickList partList : mList) {
+                if (!partList.isCheck) {
+                    partList.isCheck = true;
+                }
+            }
+        } else {
+            for (RspPickList partList : mList) {
+                if (partList.isCheck) {
+                    partList.isCheck = false;
+                }
+            }
+        }
+        return mList;
+    }
+
+    public static List<RspPickList> writePrice(List<RspPickList> mList, String price) {
+        //对一个item输入的text做一个处理
+        //存储是否是第一个
+        boolean isFirst = true;
+        for (RspPickList pickList : mList) {
+            if (pickList.isCheck) {
+                if(isFirst){
+                    int num = 0;
+                    if (price.length() >= 4) {
+                        String[] p = price.split("");
+                        String link = "";
+                        //从1开始是为了去除spili剪切多了一个[]，索引为0
+                        for (int i = p.length - 1; i > 0; i--) {
+                            if (p[i] != "") {
+                                if (num != 0 && num % 3 == 0) {
+                                    link = p[i] + "," + link;
+                                } else {
+                                    link = p[i] + link;
+                                }
+                                num++;
+                            }
+                        }
+                        pickList.setUnitPrice(link);
+                    }
+                    isFirst = false;
+                }else{
+                    pickList.setUnitPrice(price);
+                }
+
+            }
+        }
+        return mList;
     }
 }

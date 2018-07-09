@@ -29,11 +29,13 @@ public class PartPickWriteInfoAdapter extends BaseQuickAdapter<RspPickList, Base
 
     @Override
     protected void convert(BaseViewHolder helper, final RspPickList item) {
+        helper.setChecked(R.id.cb_price,item.isCheck);
         helper.setText(R.id.item_tv_distpartchoosefillinfo_partname, item.getPartName());
         helper.setText(R.id.item_tv_distpartchoosefillinfo_partno, item.getPartNo());
         helper.setText(R.id.item_tv_distpartchoosefillinfo_partcount, item.getApplyItemCount() + "");
         helper.setText(R.id.item_tv_distpartchoosefillinfo_unit1, item.getPartUnit());
         helper.setText(R.id.tv_space, item.getPartPlace());
+        helper.setText(R.id.et_price, item.getUnitPrice());
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
             Date date = format.parse(item.getApplyItemExpettime());
@@ -63,27 +65,32 @@ public class PartPickWriteInfoAdapter extends BaseQuickAdapter<RspPickList, Base
             @Override
             public void afterTextChanged(Editable s) {
                 String price = view.getText().toString().toString();
-                int num = 0;
-                if (price.length() >= 4) {
-                    String[] p = price.split("");
-                    String link = "";
-                    //从1开始是为了去除spili剪切多了一个[]，索引为0
-                    for (int i = p.length - 1; i > 0; i--) {
-                        if (p[i] != "") {
-                            if (num != 0 && num % 3 == 0) {
-                                link = p[i] + "," + link;
-                            } else {
-                                link = p[i] + link;
+                if(!price.contains(",")){
+                    int num = 0;
+                    if (price.length() >= 4) {
+                        String[] p = price.split("");
+                        String link = "";
+                        //从1开始是为了去除spili剪切多了一个[]，索引为0
+                        for (int i = p.length - 1; i > 0; i--) {
+                            if (p[i] != "") {
+                                if (num != 0 && num % 3 == 0) {
+                                    link = p[i] + "," + link;
+                                } else {
+                                    link = p[i] + link;
+                                }
+                                num++;
                             }
-                            num++;
                         }
+                        item.setUnitPrice(link);
+                        Log.e("TAG", "link=" + link);
+                    } else {
+                        item.setUnitPrice(price);
                     }
-                    item.setUnitPrice(link);
-                    Log.e("TAG", "link=" + link);
-                } else {
+                }else{
                     item.setUnitPrice(price);
                 }
             }
+
         };
         view.addTextChangedListener(watcher);
         view.setTag(watcher);

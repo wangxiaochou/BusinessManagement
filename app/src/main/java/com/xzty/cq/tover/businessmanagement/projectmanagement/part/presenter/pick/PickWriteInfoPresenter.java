@@ -34,57 +34,21 @@ public class PickWriteInfoPresenter extends BasePresenter<PickWriteInfoContract.
             }
         }
         PickWriteInfoHelper.commit(firm, contractNo, expectOutTime, outNote, distId, partList, this);
-        /*
-        RemoteService service = NetWork.remote(RemoteService.class);
-        Account.load(MyApplication.getInstance());
-        String projectId = Account.getProjectId();
-        String outUserId = Account.getemployId();
-        RequestBody body1 = RequestBody.create(MediaType.parse("multipart/form-data"),
-                projectId);
-        RequestBody body2 = RequestBody.create(MediaType.parse("multipart/form-data"),
-                outUserId);
-        RequestBody body3 = RequestBody.create(MediaType.parse("multipart/form-data"),
-                distId);
-        RequestBody body4 = RequestBody.create(MediaType.parse("multipart/form-data"),
-                partList);
-        RequestBody body5 = RequestBody.create(MediaType.parse("multipart/form-data"),
-                firm);
-        RequestBody body6 = RequestBody.create(MediaType.parse("multipart/form-data"),
-                contractNo);
-        RequestBody body7 = RequestBody.create(MediaType.parse("multipart/form-data"),
-                expectOutTime);
-        RequestBody body8 = RequestBody.create(MediaType.parse("multipart/form-data"),
-                outNote);
-        Map<String, RequestBody> maps = new HashMap<>();
-        maps.put("projectId", body1);
-        maps.put("outUserId", body2);
-        maps.put("distId", body3);
-        maps.put("partList", body4);
-        maps.put("firm", body5);
-        maps.put("contractNo", body6);
-        maps.put("expectOutTime", body7);
-        maps.put("outNote", body8);
-        Subscription subscription = service.overPurchase(maps).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<RspModel<List<ReqLogin>>>() {
-            @Override
-            public void onCompleted() {
+    }
 
-            }
+    @Override
+    public void itemClick(List<RspPickList> mList, int position) {
+        getView().clickBack(PickWriteInfoHelper.itemClick(mList,position));
+    }
 
-            @Override
-            public void onError(Throwable e) {
-                view.showError("请求失败" + e.getMessage());
-            }
+    @Override
+    public void chooseAll(List<RspPickList> mList, boolean status) {
+        getView().clickBack(PickWriteInfoHelper.chooseAll(mList,status));
+    }
 
-            @Override
-            public void onNext(RspModel<List<ReqLogin>> listRspModel) {
-                int code = listRspModel.getBackcode();
-                if (code == 0) {
-                    view.showError("请求错误");
-                } else {
-                    view.ok();
-                }
-            }
-        });*/
+    @Override
+    public void writePrice(List<RspPickList> mList, String price) {
+        getView().clickBack(PickWriteInfoHelper.writePrice(mList,price));
     }
 
     @Override
