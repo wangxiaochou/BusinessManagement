@@ -1,18 +1,29 @@
 package com.xzty.cq.tover.businessmanagement.common;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.Application;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Process;
 import android.support.multidex.MultiDex;
 import android.util.Log;
 
+import com.xiaomi.channel.commonutils.logger.LoggerInterface;
+import com.xiaomi.mipush.sdk.Logger;
+import com.xiaomi.mipush.sdk.MiPushClient;
+
+import com.xzty.cq.tover.businessmanagement.common.data.StaticValue;
 import com.xzty.cq.tover.businessmanagement.common.utils.Rom;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+
+import static java.lang.Process.*;
+import static org.greenrobot.eventbus.EventBus.TAG;
 
 /**
  * author zzl
@@ -22,13 +33,15 @@ import java.util.List;
 
 public class MyApplication extends Application {
     private static MyApplication instance;
+
+
     //管理应用下所有activity
     private static List<Activity> allActivity = Collections.synchronizedList(new LinkedList<Activity>());
 
     @Override
     public void onCreate() {
         super.onCreate();
-        MultiDex.install(this);
+   //     MultiDex.install(this);
         instance = this;
         //注册Activity的监听
         registerAcivityListener();
@@ -39,6 +52,29 @@ public class MyApplication extends Application {
         } else {
 
         }
+
+        //初始化MiPush推送服务
+        if(true) {
+
+            MiPushClient.registerPush(this, StaticValue.APP_ID, StaticValue.APP_KEY);
+        }
+    }
+
+    /**
+     * 判断是否注册小米推送服务
+     * @return
+     */
+    private boolean shouldInit() {
+        ActivityManager am = ((ActivityManager) getSystemService(Context.ACTIVITY_SERVICE));
+        List<ActivityManager.RunningAppProcessInfo> processInfos = am.getRunningAppProcesses();
+        String mainProcessName = getPackageName();
+        int myPid = Process.myPid();
+        for (ActivityManager.RunningAppProcessInfo info : processInfos) {
+            if (info.pid == myPid && mainProcessName.equals(info.processName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
    /* @Override

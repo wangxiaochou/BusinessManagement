@@ -30,6 +30,10 @@ public class AccountHelper {
      */
     public static void login(final ReqLogin model, final DataSourse.Callback<RspLogin> callback) {
         RemoteService service = NetWork.remote(RemoteService.class);
+        int type = model.getType();
+        Log.d("type",type+"");
+     //   Log.d("model",model.getToken());
+        Log.d("regId",model.getRegId());
         Subscription subscription = service.login(model)
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<RspModel<RspLogin>>() {

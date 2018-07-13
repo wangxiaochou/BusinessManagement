@@ -17,6 +17,7 @@ public interface LoginContract {
 
     interface Presenter extends BaseContract.Presenter {
         //发起一个登录
-        void login(String username, String password);
+        void login(String username, String password,String regId);
+      //  void login(String username, String password);
     }
 }

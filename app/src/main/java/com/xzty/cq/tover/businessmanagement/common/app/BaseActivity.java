@@ -144,6 +144,14 @@ public abstract class BaseActivity extends AppCompatActivity{
      */
     protected void cancelEvent(){};
 
+/*
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initData();
+    }
+*/
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

@@ -52,6 +52,10 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <!-- 高德地图 -->
 
+    <!--小米推送服务权限-->
+    <permission android:name="com.xzty.cq.tover.businessmanagement.permission.MIPUSH_RECEIVE"
+        android:protectionLevel="signature"/>
+    <uses-permission android:name="com.xzty.cq.tover.businessmanagement.permission.MIPUSH_RECEIVE"/>
 
     <!-- 权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -108,7 +112,7 @@
         <!-- 高德地图 -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="89d6725ac41182dc7723f051e8d73ce0" />
+            android:value="187b2e3712699e7d90cd36df08facfbe" />
 
         <activity android:name=".common.main.MainActivity">
 
@@ -199,6 +203,36 @@
         <activity android:name=".projectmanagement.tool.activity.pickdepartment.distribute.ToolPDInActivity" />
         <activity android:name=".projectmanagement.part.activity.promote.PartPromoteNumListActivity"></activity>
 
+        <!--小米推送的service和receiver|-->
+        <service android:enabled="true" android:process=":pushservice" android:name="com.xiaomi.push.service.XMPushService"/>
+        <service android:enabled="true" android:exported="false" android:permission="android.permission.BIND_JOB_SERVICE"
+            android:process=":pushservice" android:name="com.xiaomi.push.service.XMJobService"/><!--注：此service必须在3.0.1版本以后（包括3.0.1版本）加入-->
+        <service android:enabled="true" android:exported="true" android:name="com.xiaomi.mipush.sdk.PushMessageHandler" />
+        <service android:enabled="true" android:name="com.xiaomi.mipush.sdk.MessageHandleService" /> <!--注：此service必须在2.2.5版本以后（包括2.2.5版本）加入-->
+        <receiver android:exported="true" android:name="com.xiaomi.push.service.receivers.NetworkStatusReceiver" >
+            <intent-filter> <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="false" android:process=":pushservice" android:name="com.xiaomi.push.service.receivers.PingReceiver" >
+            <intent-filter> <action android:name="com.xiaomi.push.PING_TIMER" />
+            </intent-filter>
+        </receiver>
+
+        <!--注册自定义的小米推送信息receiver-->
+        <receiver
+            android:exported="true"
+            android:name="com.xzty.cq.tover.businessmanagement.common.mipush.MyPushMessageReceiver">
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.MESSAGE_ARRIVED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.ERROR" />
+            </intent-filter>
+        </receiver>
 
         <!--华为推送start-->
         <meta-data
@@ -236,19 +270,18 @@
             </intent-filter>
         </receiver>
 
-   <!--     <activity
-            android:name="com.huawei.android.hms.agent.common.HMSAgentActivity"
-            android:configChanges="orientation|locale|screenSize|layoutDirection|fontScale"
-            android:excludeFromRecents="true"
-            android:exported="false"
-            android:hardwareAccelerated="true"
-            android:theme="@android:style/Theme.Translucent">
-            <meta-data
-                android:name="hwc-theme"
-                android:value="androidhwext:style/Theme.Emui.Translucent" />
-        </activity>-->
+        <!--     <activity
+                 android:name="com.huawei.android.hms.agent.common.HMSAgentActivity"
+                 android:configChanges="orientation|locale|screenSize|layoutDirection|fontScale"
+                 android:excludeFromRecents="true"
+                 android:exported="false"
+                 android:hardwareAccelerated="true"
+                 android:theme="@android:style/Theme.Translucent">
+                 <meta-data
+                     android:name="hwc-theme"
+                     android:value="androidhwext:style/Theme.Emui.Translucent" />
+             </activity>-->
         <!--华为推送end-->
-
     </application>
 
 </manifest>

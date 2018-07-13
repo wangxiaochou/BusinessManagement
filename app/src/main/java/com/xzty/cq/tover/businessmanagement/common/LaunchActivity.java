@@ -2,6 +2,7 @@ package com.xzty.cq.tover.businessmanagement.common;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
@@ -10,10 +11,13 @@ import android.widget.Toast;
 import com.huawei.hms.api.ConnectionResult;
 import com.huawei.hms.api.HuaweiApiClient;
 import com.huawei.hms.support.api.push.HuaweiPush;
+import com.xiaomi.mipush.sdk.MiPushClient;
 import com.xzty.cq.tover.businessmanagement.R;
 import com.xzty.cq.tover.businessmanagement.common.app.BaseActivity;
+import com.xzty.cq.tover.businessmanagement.common.data.StaticValue;
 import com.xzty.cq.tover.businessmanagement.common.factory.Account;
 import com.xzty.cq.tover.businessmanagement.common.main.MainActivity;
+import com.xzty.cq.tover.businessmanagement.common.mipush.MyPushMessageReceiver;
 import com.xzty.cq.tover.businessmanagement.common.model.ReqLogin;
 
 import java.util.List;
@@ -26,7 +30,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  * explain 启动页 初始化数据
  */
 
-public class LaunchActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks,HuaweiApiClient.ConnectionCallbacks,HuaweiApiClient.OnConnectionFailedListener {
+public class LaunchActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks,HuaweiApiClient.ConnectionCallbacks,HuaweiApiClient.OnConnectionFailedListener{
     //需要申请的权限
     private String[] perms = new String[]{
             Manifest.permission.INTERNET,
@@ -38,6 +42,9 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
             Manifest.permission.READ_PHONE_STATE,
             Manifest.permission.ACCESS_FINE_LOCATION,
     };
+
+
+    MyPushMessageReceiver myPMReceiver = new MyPushMessageReceiver();
 
     private Handler delayedHandler = new Handler();
 
@@ -51,8 +58,10 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
     @Override
     protected void initData() {
         super.initData();
+        //注册小米推送服务
+        MiPushClient.registerPush(this, StaticValue.APP_ID, StaticValue.APP_KEY);
         //初始化华为推送服务
-        initHuawei();
+   //     initHuawei();
         //是否存在权限
         if (EasyPermissions.hasPermissions(this, perms)) {
             delayedHandler.postDelayed(new Runnable() {
@@ -122,7 +131,7 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
           //是否存在账号密码
         if (!TextUtils.isEmpty(model.getUsername()) || !TextUtils.isEmpty(model.getUsername())) {
             finish();
-            startActivity(new Intent(LaunchActivity.this, MainActivity.class));
+            startActivity(new Intent(LaunchActivity.this, LoginActivity.class));
         }else {
             finish();
             startActivity(new Intent(LaunchActivity.this,LoginActivity.class));
