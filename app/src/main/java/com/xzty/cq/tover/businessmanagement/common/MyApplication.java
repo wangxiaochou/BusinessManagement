@@ -7,23 +7,17 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Process;
-import android.support.multidex.MultiDex;
 import android.util.Log;
 
-import com.xiaomi.channel.commonutils.logger.LoggerInterface;
-import com.xiaomi.mipush.sdk.Logger;
 import com.xiaomi.mipush.sdk.MiPushClient;
-
 import com.xzty.cq.tover.businessmanagement.common.data.StaticValue;
+import com.xzty.cq.tover.businessmanagement.common.huawei.HMSAgent;
 import com.xzty.cq.tover.businessmanagement.common.utils.Rom;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-
-import static java.lang.Process.*;
-import static org.greenrobot.eventbus.EventBus.TAG;
 
 /**
  * author zzl
@@ -48,14 +42,8 @@ public class MyApplication extends Application {
         //判断当前手机系统
         if (Rom.isEmui()) {
             //注册华为推送
-
-        } else {
-
-        }
-
-        //初始化MiPush推送服务
-        if(true) {
-
+            HMSAgent.init(this);
+        } else if(Rom.isMiui()) {
             MiPushClient.registerPush(this, StaticValue.APP_ID, StaticValue.APP_KEY);
         }
     }

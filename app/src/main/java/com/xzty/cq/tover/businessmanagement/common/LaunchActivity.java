@@ -2,7 +2,6 @@ package com.xzty.cq.tover.businessmanagement.common;
 
 import android.Manifest;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
@@ -11,14 +10,18 @@ import android.widget.Toast;
 import com.huawei.hms.api.ConnectionResult;
 import com.huawei.hms.api.HuaweiApiClient;
 import com.huawei.hms.support.api.push.HuaweiPush;
+import com.huawei.hms.support.api.push.TokenResult;
 import com.xiaomi.mipush.sdk.MiPushClient;
 import com.xzty.cq.tover.businessmanagement.R;
 import com.xzty.cq.tover.businessmanagement.common.app.BaseActivity;
 import com.xzty.cq.tover.businessmanagement.common.data.StaticValue;
 import com.xzty.cq.tover.businessmanagement.common.factory.Account;
+import com.xzty.cq.tover.businessmanagement.common.huawei.HMSAgent;
+import com.xzty.cq.tover.businessmanagement.common.huawei.push.handler.GetTokenHandler;
 import com.xzty.cq.tover.businessmanagement.common.main.MainActivity;
 import com.xzty.cq.tover.businessmanagement.common.mipush.MyPushMessageReceiver;
 import com.xzty.cq.tover.businessmanagement.common.model.ReqLogin;
+import com.xzty.cq.tover.businessmanagement.common.utils.Rom;
 
 import java.util.List;
 
@@ -30,7 +33,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  * explain 启动页 初始化数据
  */
 
-public class LaunchActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks,HuaweiApiClient.ConnectionCallbacks,HuaweiApiClient.OnConnectionFailedListener{
+public class LaunchActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks, HuaweiApiClient.ConnectionCallbacks, HuaweiApiClient.OnConnectionFailedListener {
     //需要申请的权限
     private String[] perms = new String[]{
             Manifest.permission.INTERNET,
@@ -58,10 +61,13 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
     @Override
     protected void initData() {
         super.initData();
-        //注册小米推送服务
-        MiPushClient.registerPush(this, StaticValue.APP_ID, StaticValue.APP_KEY);
-        //初始化华为推送服务
-   //     initHuawei();
+        if(Rom.isEmui()){
+            //初始化华为推送服务
+            initHuawei();
+        }else{
+            //注册小米推送服务
+            MiPushClient.registerPush(this, StaticValue.APP_ID, StaticValue.APP_KEY);
+        }
         //是否存在权限
         if (EasyPermissions.hasPermissions(this, perms)) {
             delayedHandler.postDelayed(new Runnable() {
@@ -86,7 +92,7 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .build();
-        client.connect(this);
+        client.connect();
     }
 
     @Override
@@ -125,16 +131,16 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
         finish();
     }
 
-    private void isLogin(){
+    private void isLogin() {
         Account.load(LaunchActivity.this);
         ReqLogin model = Account.getUserInfo();
-          //是否存在账号密码
+        //是否存在账号密码
         if (!TextUtils.isEmpty(model.getUsername()) || !TextUtils.isEmpty(model.getUsername())) {
             finish();
-            startActivity(new Intent(LaunchActivity.this, LoginActivity.class));
-        }else {
+            startActivity(new Intent(LaunchActivity.this, MainActivity.class));
+        } else {
             finish();
-            startActivity(new Intent(LaunchActivity.this,LoginActivity.class));
+            startActivity(new Intent(LaunchActivity.this, LoginActivity.class));
         }
 
     }
@@ -147,16 +153,28 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
 
     @Override
     public void onConnected() {
-        Log.e("TAG","华为推送连接成功");
+        Log.e("TAG", "华为推送连接成功");
+
+        HMSAgent.Push.getToken(new GetTokenHandler() {
+            @Override
+            public void onResult(int rtnCode, TokenResult tokenResult) {
+                if (rtnCode != 0) {
+                    Toast.makeText(LaunchActivity.this,"获取token失败,请重启程序",Toast.LENGTH_SHORT).show();
+                } else {
+
+                }
+            }
+        });
     }
 
     @Override
     public void onConnectionSuspended(int cause) {
-        Log.e("TAG","华为推送连接失败"+cause);
+        Log.e("TAG", "华为推送连接失败" + cause);
+
     }
 
     @Override
     public void onConnectionFailed(ConnectionResult result) {
-        Log.e("TAG","华为推送连接失败"+result.getErrorCode());
+        Log.e("TAG", "华为推送连接失败" + result.getErrorCode());
     }
 }

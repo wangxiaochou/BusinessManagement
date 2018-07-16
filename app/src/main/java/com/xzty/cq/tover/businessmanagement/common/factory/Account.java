@@ -22,12 +22,14 @@ public class Account {
     private static final String RULE = "rules";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
-
+    //华为推送的token
+    private static final String EMUITOKEN = "emui";
     private static String employId;
     private static String projectId;
     private static Set<String> rules;
     private static String username;
     private static String password;
+    private static String emuiToken;
 
     /**
      * 存储基础信息到xml文件中
@@ -45,6 +47,16 @@ public class Account {
                 .apply();
     }
 
+    public static void loadToken(Context context) {
+        SharedPreferences sp = context.getSharedPreferences("PUSH", Context.MODE_PRIVATE);
+        emuiToken = sp.getString(EMUITOKEN, "");
+    }
+
+    private static void saveToken(Context context) {
+        SharedPreferences sp = context.getSharedPreferences("PUSH", Context.MODE_PRIVATE);
+        sp.edit().putString(EMUITOKEN, emuiToken).apply();
+    }
+
     /**
      * 数据加载
      */
@@ -54,7 +66,7 @@ public class Account {
         rules = sp.getStringSet(RULE, null);
         username = sp.getString(USERNAME, "");
         password = sp.getString(PASSWORD, "");
-        projectId = sp.getString(PROJECTID,"");
+        projectId = sp.getString(PROJECTID, "");
     }
 
     /**
@@ -71,13 +83,22 @@ public class Account {
         sava(MyApplication.getInstance());
     }
 
+    public static void token(String token) {
+        Account.emuiToken = token;
+        saveToken(MyApplication.getInstance());
+    }
+
     /**
      *
      */
-    public static void savaProjectId(Context context,String projectId) {
+    public static void savaProjectId(Context context, String projectId) {
         SharedPreferences sp = context.getSharedPreferences(Account.class.getName(), Context.MODE_PRIVATE);
         sp.edit()
-        .putString(PROJECTID,projectId).apply();
+                .putString(PROJECTID, projectId).apply();
+    }
+
+    public static String getToken() {
+        return Account.emuiToken;
     }
 
     public static ReqLogin getUserInfo() {
@@ -88,11 +109,12 @@ public class Account {
         return Account.employId;
     }
 
-    public static String getProjectId(){
+    public static String getProjectId() {
         return Account.projectId;
     }
 
-    public static Set<String> getRule(){
+
+    public static Set<String> getRule() {
         return Account.rules;
     }
 }
