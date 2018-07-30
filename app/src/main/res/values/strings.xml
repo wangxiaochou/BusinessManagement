@@ -5,5 +5,8 @@
     <string name="main_finance">财务</string>
     <string name="main_human">人力</string>
     <string name="main_business">商务</string>
-    <string name="activity_task_manage">任务管理</string>
+
+
+    <!--2018/7/30 yq-->
+    <string name="task_homepage_title">任务管理</string>
 </resources>

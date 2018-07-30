@@ -25,7 +25,7 @@
         android:minHeight="?attr/actionBarSize"
         android:elevation="4dp"
         app:navigationIcon="@drawable/iv_back_btn_normal"
-        app:title="@string/activity_task_manage"
+        app:title="@string/task_homepage_title"
         app:titleTextColor="@color/task_title_text_color"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         >
