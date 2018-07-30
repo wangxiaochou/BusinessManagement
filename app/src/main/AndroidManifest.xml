@@ -56,6 +56,7 @@
     <permission android:name="com.xzty.cq.tover.businessmanagement.permission.MIPUSH_RECEIVE"
         android:protectionLevel="signature"/>
     <uses-permission android:name="com.xzty.cq.tover.businessmanagement.permission.MIPUSH_RECEIVE"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
 
     <!-- 权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -202,6 +203,7 @@
         <activity android:name=".projectmanagement.tool.activity.pickdepartment.distribute.ToolPPDistributeOrderDetailsActivity" />
         <activity android:name=".projectmanagement.tool.activity.pickdepartment.distribute.ToolPDInActivity" />
         <activity android:name=".projectmanagement.part.activity.promote.PartPromoteNumListActivity"></activity>
+        <activity android:name=".projectmanagement.task.activity.TaskMainActivity"></activity>
 
         <!--小米推送的service和receiver|-->
         <service android:enabled="true" android:process=":pushservice" android:name="com.xiaomi.push.service.XMPushService"/>
@@ -210,7 +212,8 @@
         <service android:enabled="true" android:exported="true" android:name="com.xiaomi.mipush.sdk.PushMessageHandler" />
         <service android:enabled="true" android:name="com.xiaomi.mipush.sdk.MessageHandleService" /> <!--注：此service必须在2.2.5版本以后（包括2.2.5版本）加入-->
         <receiver android:exported="true" android:name="com.xiaomi.push.service.receivers.NetworkStatusReceiver" >
-            <intent-filter> <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>

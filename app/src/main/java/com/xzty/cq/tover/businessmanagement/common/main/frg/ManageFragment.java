@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.xzty.cq.tover.businessmanagement.R;
 import com.xzty.cq.tover.businessmanagement.common.app.BaseFragment;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.project.all.ProjectListActivity;
+import com.xzty.cq.tover.businessmanagement.projectmanagement.task.activity.TaskMainActivity;
 
 import butterknife.BindView;
 
@@ -24,6 +25,10 @@ public class ManageFragment extends BaseFragment implements View.OnClickListener
     @BindView(R.id.btn_manage)
     Button btn_manage;
 
+    @BindView(R.id.btn_task)
+    Button btn_proj_dep;
+
+
     @Override
     public int getContentLayout() {
         return R.layout.manage_fragment;
@@ -34,6 +39,7 @@ public class ManageFragment extends BaseFragment implements View.OnClickListener
         super.initWidget(root);
         tv_toolbarTitle.setText("管理");
         btn_manage.setOnClickListener(this);
+        btn_proj_dep.setOnClickListener(this);
     }
 
     @Override
@@ -41,6 +47,9 @@ public class ManageFragment extends BaseFragment implements View.OnClickListener
         switch (v.getId()) {
             case R.id.btn_manage:
                 startActivity(new Intent(getActivity(),ProjectListActivity.class));
+                break;
+            case R.id.btn_task:
+                startActivity(new Intent(getActivity(), TaskMainActivity.class));
                 break;
         }
     }

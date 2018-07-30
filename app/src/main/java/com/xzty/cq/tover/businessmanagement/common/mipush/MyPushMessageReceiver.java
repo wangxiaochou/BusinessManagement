@@ -64,8 +64,9 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
     }
     @Override
     public void onCommandResult(Context context, MiPushCommandMessage message) {
+        Log.v("registBack:",
+                "onCommandResult is called. " + message.toString());
         String command = message.getCommand();
-        Log.d("registe mi push","registing...");
         List<String> arguments = message.getCommandArguments();
         String cmdArg1 = ((arguments != null && arguments.size() > 0) ? arguments.get(0) : null);
         String cmdArg2 = ((arguments != null && arguments.size() > 1) ? arguments.get(1) : null);
@@ -111,6 +112,8 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
         List<String> arguments = message.getCommandArguments();
         String cmdArg1 = ((arguments != null && arguments.size() > 0) ? arguments.get(0) : null);
         String cmdArg2 = ((arguments != null && arguments.size() > 1) ? arguments.get(1) : null);
+        Log.d("registe mi push","registing...");
+        Log.d("regist result",arguments.toString());
         if (MiPushClient.COMMAND_REGISTER.equals(command)) {
             if (message.getResultCode() == ErrorCode.SUCCESS) {
                 Log.d("注册推送成功，regId：",cmdArg1);

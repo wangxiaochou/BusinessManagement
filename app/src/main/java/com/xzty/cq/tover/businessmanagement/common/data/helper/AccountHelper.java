@@ -33,7 +33,7 @@ public class AccountHelper {
         int type = model.getType();
         Log.d("type",type+"");
      //   Log.d("model",model.getToken());
-        Log.d("regId",model.getRegId());
+//        Log.d("regId",model.getRegId());
         Subscription subscription = service.login(model)
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<RspModel<RspLogin>>() {

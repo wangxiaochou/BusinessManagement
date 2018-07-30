@@ -147,7 +147,6 @@ public class PartChooseActivity extends ActivityPresenter<ChooseContract.Present
             }
         });
 
-        spinner_choose_ishadapply = (Spinner) findViewById(R.id.spinner_choose_ishadapply);
         spinner_choose_ishadapply.setAdapter(new ArrayAdapter<String>(this, android.R
                 .layout.simple_spinner_item, applyStateList));
         spinner_choose_ishadapply.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

@@ -16,4 +16,7 @@
     <color name="item_text_no">#d51f08</color>
     <color name="lins">#FFEAEAEA</color>
     <color name="background_gray">#eeeeee</color>
+
+    <!--2018/7/30 yq-->
+    <color name="task_title_text_color">#161616</color>
 </resources>

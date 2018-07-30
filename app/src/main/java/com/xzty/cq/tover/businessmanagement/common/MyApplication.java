@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.os.Process;
 import android.util.Log;
 
+import com.xiaomi.channel.commonutils.logger.LoggerInterface;
+import com.xiaomi.mipush.sdk.Logger;
 import com.xiaomi.mipush.sdk.MiPushClient;
 import com.xzty.cq.tover.businessmanagement.common.data.StaticValue;
 import com.xzty.cq.tover.businessmanagement.common.huawei.HMSAgent;
@@ -43,9 +45,29 @@ public class MyApplication extends Application {
         if (Rom.isEmui()) {
             //注册华为推送
             HMSAgent.init(this);
-        } else if(Rom.isMiui()) {
+        } else if(shouldInit()) {
+            Log.d("push","regist mipush on start");
             MiPushClient.registerPush(this, StaticValue.APP_ID, StaticValue.APP_KEY);
         }
+        //打开Log
+        LoggerInterface newLogger = new LoggerInterface() {
+
+            @Override
+            public void setTag(String tag) {
+                // ignore
+            }
+
+            @Override
+            public void log(String content, Throwable t) {
+                Log.d("tover.mipush", content, t);
+            }
+
+            @Override
+            public void log(String content) {
+                Log.d("tover.mipush", content);
+            }
+        };
+        Logger.setLogger(this, newLogger);
     }
 
     /**

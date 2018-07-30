@@ -66,6 +66,7 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
             initHuawei();
         }else{
             //注册小米推送服务
+            Log.d("push","regist mipush on launch");
             MiPushClient.registerPush(this, StaticValue.APP_ID, StaticValue.APP_KEY);
         }
         //是否存在权限

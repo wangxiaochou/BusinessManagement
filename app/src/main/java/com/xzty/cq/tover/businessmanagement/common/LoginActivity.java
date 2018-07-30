@@ -1,10 +1,12 @@
 package com.xzty.cq.tover.businessmanagement.common;
 
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.xiaomi.mipush.sdk.MiPushClient;
 import com.xzty.cq.tover.businessmanagement.R;
 import com.xzty.cq.tover.businessmanagement.common.account.LoginContract;
 import com.xzty.cq.tover.businessmanagement.common.account.LoginPresenter;
@@ -41,13 +43,13 @@ public class LoginActivity extends ActivityPresenter<LoginContract.Presenter> im
         String username = et_username.getText().toString().trim();
         String password = et_password.getText().toString().trim();
         mPresenter.login(username, password, StaticValue.regId);
- /*       if (StaticValue.regId != null){
+        if (StaticValue.regId != null){
             mPresenter.login(username, password,StaticValue.regId);
         }else {
             MiPushClient.registerPush(this,StaticValue.APP_ID,StaticValue.APP_KEY);
             Log.d("Login error", "未注册regId");
             Toast.makeText(this, "未注册regId", Toast.LENGTH_SHORT).show();
-        }*/
+        }
     }
 
     @Override
