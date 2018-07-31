@@ -37,7 +37,7 @@ public class MyToolbar extends Toolbar {
 
     @Override
     public void setTitle(int resId) {
-        super.setTitle(R.string.activity_task_manage);
+        super.setTitle(R.string.task_homepage_title);
     }
 
 
@@ -52,7 +52,7 @@ public class MyToolbar extends Toolbar {
     }
 
     //为Toolbar设置左边返回图标
-    public void setBackItem(Context context, @DrawableRes int resId){
+    public void setBackItem(final Context context, @DrawableRes int resId){
         ImageView imageView = new ImageView(context);
         imageView.setImageDrawable(AppCompatResources.getDrawable(context,resId));
 
