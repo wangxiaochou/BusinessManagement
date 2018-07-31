@@ -55,6 +55,7 @@ public abstract class BaseFragment extends Fragment {
             mIsFirstInitData = false;
             // 触发
             onFirstInit();
+            initData();
         } else {
             // 当View创建完成后初始化数据
             initData();

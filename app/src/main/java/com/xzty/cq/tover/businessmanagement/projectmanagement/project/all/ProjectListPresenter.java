@@ -14,6 +14,9 @@ import java.util.List;
 public class ProjectListPresenter extends BasePresenter<ProjectListContract.View>
         implements ProjectListContract.Presenter, DataSourse.Callback<List<RspProjectListModel>> {
 
+    public ProjectListPresenter() {
+    }
+
     public ProjectListPresenter(ProjectListContract.View view) {
         super(view);
     }
