@@ -60,7 +60,7 @@ dependencies {
     implementation 'com.amap.api:location:latest.integration'
     implementation 'com.amap.api:search:latest.integration'
     //华为推送
-    implementation 'com.huawei.android.hms:push:2.6.1.301'
+    implementation 'com.huawei.android.hms:push:2.5.3.305'
     //导入libs文件夹的jar包，小米推送jar包
     compile fileTree(include: ['*.jar'], dir: 'libs')
     implementation files('libs/MiPush_SDK_Client_3_6_2.jar')

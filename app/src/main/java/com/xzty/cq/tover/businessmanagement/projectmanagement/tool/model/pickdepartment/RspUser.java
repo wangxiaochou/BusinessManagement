@@ -7,26 +7,26 @@ package com.xzty.cq.tover.businessmanagement.projectmanagement.tool.model.pickde
  */
 
 public class RspUser {
-    private String EplyNum,
-            EplyName;
+    private String eply_num,
+            eply_name;
 
     public RspUser(String eplyNum, String eplyName) {
-        EplyNum = eplyNum;
-        EplyName = eplyName;
+        eply_num = eplyNum;
+        eply_name = eplyName;
     }
     public String getEplyNum() {
-        return EplyNum;
+        return eply_num;
     }
 
     public void setEplyNum(String eplyNum) {
-        EplyNum = eplyNum;
+        eply_num = eplyNum;
     }
 
     public String getEplyName() {
-        return EplyName;
+        return eply_name;
     }
 
     public void setEplyName(String eplyName) {
-        EplyName = eplyName;
+        eply_name = eplyName;
     }
 }
