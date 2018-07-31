@@ -203,7 +203,7 @@
         <activity android:name=".projectmanagement.tool.activity.pickdepartment.distribute.ToolPPDistributeOrderDetailsActivity" />
         <activity android:name=".projectmanagement.tool.activity.pickdepartment.distribute.ToolPDInActivity" />
         <activity android:name=".projectmanagement.part.activity.promote.PartPromoteNumListActivity"></activity>
-        <activity android:name=".projectmanagement.task.activity.TaskMainActivity"></activity>
+        <activity android:name=".department_of_management.manage_assist_task.manage_assist_task_list.activity.TaskMainActivity"></activity>
 
         <!--小米推送的service和receiver|-->
         <service android:enabled="true" android:process=":pushservice" android:name="com.xiaomi.push.service.XMPushService"/>
@@ -252,6 +252,9 @@
                 android:name="hwc-theme"
                 android:value="androidhwext:style/Theme.Emui.Translucent" />
         </activity>
+        <activity android:name=".common.main.activity.ManageActivity" />
+        <activity android:name=".department_of_management.manage_assist_task.manage_assist_task_list.activity.ManageAssistTaskActivity" />
+
         <provider
             android:name="com.huawei.hms.update.provider.UpdateProvider"
             android:authorities="com.xzty.cq.tover.businessmanagement.hms.update.provider"

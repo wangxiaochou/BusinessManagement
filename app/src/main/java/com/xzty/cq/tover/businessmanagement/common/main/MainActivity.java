@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.xiaomi.mipush.sdk.MiPushClient;
 import com.xzty.cq.tover.businessmanagement.R;
 import com.xzty.cq.tover.businessmanagement.common.app.BaseActivity;
 import com.xzty.cq.tover.businessmanagement.common.factory.NavHelper;

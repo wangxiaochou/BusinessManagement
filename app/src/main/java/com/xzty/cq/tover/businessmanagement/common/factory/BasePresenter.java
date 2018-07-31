@@ -9,6 +9,9 @@ package com.xzty.cq.tover.businessmanagement.common.factory;
 public class BasePresenter<T extends BaseContract.View> implements BaseContract.Presenter {
     private T mView;
 
+    public BasePresenter() {
+    }
+
     public BasePresenter(T view) {
         setView(view);
     }
