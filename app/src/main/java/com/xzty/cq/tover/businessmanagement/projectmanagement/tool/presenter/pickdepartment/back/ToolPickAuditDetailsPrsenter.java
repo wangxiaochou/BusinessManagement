@@ -62,7 +62,7 @@ public class ToolPickAuditDetailsPrsenter extends BasePresenter<ToolPickAuditDet
         //完好入库
         submit.setBackDetailIdList(backList);
         submit.setToolBackId(backId);
-        RemoteService service = NetWork.remote(RemoteService.class);
+        RemoteServiceTask service = NetWork.remote(RemoteServiceTask.class);
         Subscription subscription = service.bdSubmitBackConfirm(submit).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<RspModel<RspLogin>>() {
             @Override
             public void onCompleted() {

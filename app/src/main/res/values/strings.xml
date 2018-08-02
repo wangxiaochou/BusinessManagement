@@ -10,4 +10,5 @@
     <!--2018/7/30 yq-->
     <string name="task_homepage_title">任务管理</string>
     <string name="task_manage_assist">项管协调</string>
+    <string name="task_assisit_detail">协调任务详情</string>
 </resources>

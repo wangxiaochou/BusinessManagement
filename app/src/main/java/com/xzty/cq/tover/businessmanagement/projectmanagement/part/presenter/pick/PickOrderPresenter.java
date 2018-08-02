@@ -63,7 +63,7 @@ public class PickOrderPresenter extends BasePresenter<PickOrderContract.View>
         maps.put("endDistTime", times[1]);
         maps.put("distOrderState", distOrderState);
         maps.put("buyerId", buyerId);
-        RemoteService service = NetWork.remote(RemoteService.class);
+        RemoteServiceTask service = NetWork.remote(RemoteServiceTask.class);
         Subscription subscription = service.queryPurchaseList(maps).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<RspModel<List<RspPickOrder>>>() {
             @Override
             public void onCompleted() {
@@ -93,7 +93,7 @@ public class PickOrderPresenter extends BasePresenter<PickOrderContract.View>
         isNet = "notaPick";
         final PickOrderContract.View view = getView();
          PickOrderHelper.notaPick(distId,this);
-      /*  RemoteService service = NetWork.remote(RemoteService.class);
+      /*  RemoteServiceTask service = NetWork.remote(RemoteServiceTask.class);
         Subscription subscription = service.affirmPurchase(distId).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<RspModel<List<RspLogin>>>() {
             @Override
             public void onCompleted() {
