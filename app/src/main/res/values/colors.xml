@@ -19,4 +19,8 @@
 
     <!--2018/7/30 yq-->
     <color name="task_title_text_color">#161616</color>
+
+
+    <!--2018/07/31 wl-->
+    <color name="toolbar_background_color">#ffffff</color>
 </resources>
