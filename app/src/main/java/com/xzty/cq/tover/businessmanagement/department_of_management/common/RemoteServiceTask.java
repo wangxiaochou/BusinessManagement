@@ -1,6 +1,7 @@
 package com.xzty.cq.tover.businessmanagement.department_of_management.common;
 
 import com.xzty.cq.tover.businessmanagement.common.model.RspModel;
+import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_detail.model.RspAssistProgressDetails;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.model.RspAssistTaskDetails;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import rx.Observable;
 public interface RemoteServiceTask {
 
     /**
+     * @Author yq
      * 获取某一项目的协调任务
      *
      * @param projectId
@@ -24,4 +26,13 @@ public interface RemoteServiceTask {
      */
     @GET("Androidprojectworks/androidprojectworks")
     Observable<RspModel<List<RspAssistTaskDetails>>> getTasks(@Query("PROJECT_ID") String projectId);
+
+    /**
+     * @Author yq
+     * 获取协调任务进展详情
+     * @param assistTaskId
+     * @return
+     */
+    //TODO
+    Observable<RspModel<List<RspAssistProgressDetails>>> getAssistProgressDetails(@Query("work_id") int assistTaskId);
 }

@@ -58,9 +58,34 @@
                         android:id="@+id/tv_task_assist_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:maxHeight="34dp"
                         android:layout_marginStart="@dimen/dp_10"
                         android:layout_gravity="center_horizontal"
-                        android:text="催促总包提供1号2号仓库围护材料堆放场地，跟进屋面板进场压型和墙面板进场"/>
+                        android:text="催促总包提供1号2号仓库围护材料堆放场地，跟进屋面板进场压型和墙面板进场
+                                        催促总包提供1号2号仓库围护材料堆放场地，跟进屋面板进场压型和墙面板进场"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="最新进展:" />
+                    <TextView
+                        android:id="@+id/tv_task_assist_newest"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:maxHeight="34dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:text="@string/task_nomore_progress"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/iv_task_add_progress"/>
                 </LinearLayout>
 
             </LinearLayout>

@@ -2,6 +2,7 @@ package com.xzty.cq.tover.businessmanagement.department_of_management.manage_ass
 
 import com.google.gson.annotations.SerializedName;
 import com.xzty.cq.tover.businessmanagement.common.model.EmployeeModel;
+import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_detail.model.RspAssistProgressDetails;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.project.all.RspProjectListModel;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class RspAssistTaskDetails {
     private String emplId;
 
     //创建人姓名
-    @SerializedName("empl_name")
+    @SerializedName("eply_name")
     private String emplName;
 
     //是否完成
@@ -50,25 +51,31 @@ public class RspAssistTaskDetails {
     private int type;
 
     //创建时间
-    @SerializedName("creat_time")
+    @SerializedName("create_time")
     private String createTime;
 
     //是否删除
     @SerializedName("is_delete")
     private int isDelete;
 
+    //任务进展详情
+    @SerializedName("workstrack")
+    private List<RspAssistProgressDetails> taskProgresses;
  /*   //项目详情
     @SerializedName("item")
     private List<RspProjectListModel> project;
+    */
 
-    //负责人
+/*    //负责人
     @SerializedName("chargeperson")
     private List<EmployeeModel> employees;*/
+
     @SerializedName("item")
     private RspProjectListModel project;
 
-    @SerializedName("chargeperson")
-    private EmployeeModel employees;
+/*    @SerializedName("chargeperson")
+    private EmployeeModel employees;*/
+
 
     public int getId() {
         return id;
@@ -174,12 +181,13 @@ public class RspAssistTaskDetails {
         this.project = project;
     }
 
-    public EmployeeModel getEmployees() {
-        return employees;
+
+    public List<RspAssistProgressDetails> getTaskProgresses() {
+        return taskProgresses;
     }
 
-    public void setEmployees(EmployeeModel employees) {
-        this.employees = employees;
+    public void setTaskProgresses(List<RspAssistProgressDetails> taskProgresses) {
+        this.taskProgresses = taskProgresses;
     }
 
     @Override
@@ -197,8 +205,8 @@ public class RspAssistTaskDetails {
                 ", type=" + type +
                 ", createTime='" + createTime + '\'' +
                 ", isDelete=" + isDelete +
+                ", taskProgresses=" + taskProgresses +
                 ", project=" + project +
-                ", employees=" + employees +
                 '}';
     }
 }

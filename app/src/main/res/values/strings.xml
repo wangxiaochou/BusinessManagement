@@ -11,4 +11,10 @@
     <string name="task_homepage_title">任务管理</string>
     <string name="task_manage_assist">项管协调</string>
     <string name="task_assisit_detail">协调任务详情</string>
+    <string name="task_nomore_progress">暂无最新进展</string>
+
+
+
+    <!--2018/07/31 wl-->
+    <string name="project_task_list_title">项目任务列表</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.activity;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -7,11 +8,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xzty.cq.tover.businessmanagement.R;
 import com.xzty.cq.tover.businessmanagement.common.factory.Account;
 import com.xzty.cq.tover.businessmanagement.common.factory.ActivityPresenter;
 import com.xzty.cq.tover.businessmanagement.common.factory.BaseContract;
+import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_detail.activity.ManageAssistTaskDetailActivity;
+import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_detail.model.RspAssistProgressDetails;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.adapter.ManageAssistTaskAdapter;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.model.RspAssistTaskDetails;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.presenter.ManageAssistTaskContract;
@@ -40,6 +44,8 @@ public class ManageAssistTaskActivity extends ActivityPresenter<ManageAssistTask
     ManageAssistTaskAdapter mstAdapter;
 
     LinearLayoutManager layoutManager;
+
+    private List<RspAssistTaskDetails> mList;
 
     //设置Presenter
     @Override
@@ -79,6 +85,7 @@ public class ManageAssistTaskActivity extends ActivityPresenter<ManageAssistTask
     }
 
     public void setAdaper(List<RspAssistTaskDetails> mlist){
+        mList = mlist;
         rv_task_manage_assist.setLayoutManager(layoutManager);
         mstAdapter = new ManageAssistTaskAdapter(R.layout.task_assist_recycle_item,mlist);
         mstAdapter.setOnItemClickListener(this);
@@ -98,7 +105,9 @@ public class ManageAssistTaskActivity extends ActivityPresenter<ManageAssistTask
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+        Intent intent = new Intent(this, ManageAssistTaskDetailActivity.class);
+        intent.putExtra("AssistTaskDetail", JSON.toJSONString(mList.get(position)));
+        startActivity(intent);
     }
 
     @Override
