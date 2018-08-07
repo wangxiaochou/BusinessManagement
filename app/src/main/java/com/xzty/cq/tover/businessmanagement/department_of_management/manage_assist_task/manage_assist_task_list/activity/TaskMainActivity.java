@@ -11,6 +11,7 @@ import com.xzty.cq.tover.businessmanagement.R;
 import com.xzty.cq.tover.businessmanagement.common.factory.ActivityPresenter;
 import com.xzty.cq.tover.businessmanagement.common.factory.BaseContract;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.activity.ManageAssistTaskActivity;
+import com.xzty.cq.tover.businessmanagement.department_of_management.project_task.project_task_list.activity.ProjectTaskList_Activity;
 
 import butterknife.BindView;
 
@@ -78,7 +79,7 @@ public class TaskMainActivity extends ActivityPresenter implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_proj_task:
-                //TODO
+                startActivity(new Intent(this, ProjectTaskList_Activity.class));
                 break;
             case R.id.iv_assist_task:
                 startActivity(new Intent(this, ManageAssistTaskActivity.class));

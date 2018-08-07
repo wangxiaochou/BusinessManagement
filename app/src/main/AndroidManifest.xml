@@ -202,8 +202,12 @@
         <activity android:name=".projectmanagement.tool.activity.pickdepartment.back.ToolPDBackAuditDetailsActivity" />
         <activity android:name=".projectmanagement.tool.activity.pickdepartment.distribute.ToolPPDistributeOrderDetailsActivity" />
         <activity android:name=".projectmanagement.tool.activity.pickdepartment.distribute.ToolPDInActivity" />
+
+        <!--项管部管理注册的activity-->
         <activity android:name=".projectmanagement.part.activity.promote.PartPromoteNumListActivity"></activity>
         <activity android:name=".department_of_management.manage_assist_task.manage_assist_task_list.activity.TaskMainActivity"></activity>
+        <activity android:name=".department_of_management.project_task.project_task_list.activity.ProjectTaskList_Activity"></activity>
+        <activity android:name=".department_of_management.project_task.project_task_detail.activity.MeetingProjectDetail_Activity"></activity>
 
         <!--小米推送的service和receiver|-->
         <service android:enabled="true" android:process=":pushservice" android:name="com.xiaomi.push.service.XMPushService"/>

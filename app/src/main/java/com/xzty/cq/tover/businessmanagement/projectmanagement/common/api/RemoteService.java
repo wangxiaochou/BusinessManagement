@@ -3,6 +3,9 @@ package com.xzty.cq.tover.businessmanagement.projectmanagement.common.api;
 import com.xzty.cq.tover.businessmanagement.common.model.ReqLogin;
 import com.xzty.cq.tover.businessmanagement.common.model.RspLogin;
 import com.xzty.cq.tover.businessmanagement.common.model.RspModel;
+import com.xzty.cq.tover.businessmanagement.department_of_management.project_task.project_task_detail.model.GetMeetingProjectDetail;
+import com.xzty.cq.tover.businessmanagement.department_of_management.project_task.project_task_detail.model.ReqMeetingProjectDetail;
+import com.xzty.cq.tover.businessmanagement.department_of_management.project_task.project_task_list.bean.ProjectTaskList_List;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.Emp;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.apply.RspApplyDetails;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.apply.RspApplyList;
@@ -487,6 +490,20 @@ public interface RemoteService {
     //机具-其他-返库单详情
     @GET("Androidbackdepottool/androidtoolbackorderdetail")
     Observable<RspModel<List<RspBackDetails>>> oGetBackListDetail(@Query("toolBackId") int id);
+
+
+    /**
+     * 创建时间：2018年8月6号
+     * 创建人：王令
+     * **/
+
+    //项管部-项目任务-周例会清单
+    @GET("Androidweektask/projectmeetlst")
+    Observable<RspModel<ProjectTaskList_List>> getId(@Query("id") int id);
+
+    //项管部-项目任务-周例会项目任务
+    @POST("Androidweektask/projectmeetdetail")
+    Observable<RspModel<GetMeetingProjectDetail>> oMPDGet(@Body ReqMeetingProjectDetail request);
 
 
 }

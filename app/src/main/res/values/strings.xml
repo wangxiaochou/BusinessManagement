@@ -10,4 +10,9 @@
     <!--2018/7/30 yq-->
     <string name="task_homepage_title">任务管理</string>
     <string name="task_manage_assist">项管协调</string>
+
+
+    <!--2018/07/31  wl-->
+    <string name="project_task_list_title">项目任务列表</string>
+    <string name="project_task_list_detail">任务详情</string>
 </resources>

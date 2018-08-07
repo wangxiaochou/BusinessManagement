@@ -23,4 +23,5 @@
 
     <!--2018/07/31 wl-->
     <color name="toolbar_background_color">#ffffff</color>
+    <color name="project_task_detail_title1">#4d73ff</color>
 </resources>

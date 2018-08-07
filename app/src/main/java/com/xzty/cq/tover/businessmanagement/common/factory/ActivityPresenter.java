@@ -3,7 +3,7 @@ package com.xzty.cq.tover.businessmanagement.common.factory;
 import com.xzty.cq.tover.businessmanagement.common.app.BaseActivity;
 
 /**
- * author zzl
+ * Created by zzl
  * Created 2018/5/2.
  * explain Activity中的presenter封装
  */
