@@ -51,7 +51,7 @@ public class AffirmDetailsPresenter extends BasePresenter<AffirmDetailsContract.
             }
         }
         if (intList.size() > 0) {
-            RemoteService service = NetWork.remote(RemoteService.class);
+            RemoteServiceTask service = NetWork.remote(RemoteServiceTask.class);
             Subscription subscription = service.refuseApply(new Gson().toJson(intList)).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<RspModel<List<RspLogin>>>() {
                 @Override
                 public void onCompleted() {

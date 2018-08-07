@@ -61,7 +61,7 @@ public class UseChoosePresenter extends BasePresenter<UseChooseContract.View> im
         maps.put("outBatch", outBatch);
         maps.put("partName", partName);
         maps.put("partNo", partNo);
-        RemoteService service = NetWork.remote(RemoteService.class);
+        RemoteServiceTask service = NetWork.remote(RemoteServiceTask.class);
         Subscription subscription = service.queryChoosePart(maps).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<RspModel<List<RspUseChoose>>>() {
             @Override
             public void onCompleted() {

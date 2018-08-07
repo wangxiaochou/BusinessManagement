@@ -25,7 +25,7 @@ public class CollectInfoPresenter extends BasePresenter<CollectInfoContract.View
         final CollectInfoContract.View view = getView();
         isNet="emps";
        CollectInfoHelper.getAllBuyer(this);
-       /* RemoteService service = NetWork.remote(RemoteService.class);
+       /* RemoteServiceTask service = NetWork.remote(RemoteServiceTask.class);
         Subscription subscription = service.queryAllBuyer().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<RspModel<List<Emp>>>() {
             @Override
             public void onCompleted() {

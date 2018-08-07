@@ -258,6 +258,7 @@
         </activity>
         <activity android:name=".common.main.activity.ManageActivity" />
         <activity android:name=".department_of_management.manage_assist_task.manage_assist_task_list.activity.ManageAssistTaskActivity" />
+        <activity android:name=".department_of_management.manage_assist_task.manage_assist_task_detail.activity.ManageAssistTaskDetailActivity" />
 
         <provider
             android:name="com.huawei.hms.update.provider.UpdateProvider"

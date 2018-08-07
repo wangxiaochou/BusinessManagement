@@ -18,10 +18,13 @@
     <color name="background_gray">#eeeeee</color>
 
     <!--2018/7/30 yq-->
-    <color name="task_title_text_color">#161616</color>
+    <color name="task_title_text_black">#161616</color>
+    <color name="task_assist_title_blue">#305CBF</color>
+    <color name="task_progress_button_underway">#0BC9FF</color>
 
 
     <!--2018/07/31 wl-->
     <color name="toolbar_background_color">#ffffff</color>
     <color name="project_task_detail_title1">#4d73ff</color>
+    <color name="task_title_text_color">#161616</color>
 </resources>
