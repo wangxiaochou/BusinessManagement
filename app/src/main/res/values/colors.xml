@@ -21,6 +21,8 @@
     <color name="task_title_text_black">#161616</color>
     <color name="task_assist_title_blue">#305CBF</color>
     <color name="task_progress_button_underway">#0BC9FF</color>
+    <color name="task_progress_add_dialog_title">#66B9FF</color>
+    <color name="task_progress_add_dialog_shadow">#24465C</color>
 
 
     <!--2018/07/31 wl-->

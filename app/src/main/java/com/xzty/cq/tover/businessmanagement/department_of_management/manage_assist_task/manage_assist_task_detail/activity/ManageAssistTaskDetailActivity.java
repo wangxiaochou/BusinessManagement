@@ -4,8 +4,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.xzty.cq.tover.businessmanagement.R;
@@ -14,8 +16,12 @@ import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assi
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_detail.model.RspAssistProgressDetails;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_detail.presenter.ManageAssistTaskDetailContract;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_detail.presenter.ManageAssistTaskDetailPresenter;
+import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.activity.ManageAssistTaskActivity;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.model.RspAssistTaskDetails;
+import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.model.TaskAddProgressDialog;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -73,6 +79,21 @@ public class ManageAssistTaskDetailActivity extends ActivityPresenter<ManageAssi
         super.initData();
         layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         setMassages();
+        initAdapterOnclick();
+    }
+
+    /**
+     * 设置RecycleView的点击事件
+     */
+    private void initAdapterOnclick() {
+        mapAdapter.getHeaderLayout().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO
+                Toast.makeText(ManageAssistTaskDetailActivity.this,"添加任务进展",Toast.LENGTH_LONG).show();
+                new TaskAddProgressDialog(ManageAssistTaskDetailActivity.this).show();
+            }
+        });
     }
 
     public void setMassages(){
@@ -89,7 +110,12 @@ public class ManageAssistTaskDetailActivity extends ActivityPresenter<ManageAssi
     }
     public void setAdapter(List<RspAssistProgressDetails> progressDetails){
         progresses.setLayoutManager(layoutManager);
+        //将进展倒序
+        Collections.reverse(progressDetails);
         mapAdapter = new ManageAssistProgressAdapter(R.layout.task_assist_progress_item,progressDetails);
+        View headerView = getLayoutInflater().inflate(R.layout.task_assist_progress_header_item,null);
+        headerView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        mapAdapter.addHeaderView(headerView);
         progresses.setAdapter(mapAdapter);
     }
     @Override

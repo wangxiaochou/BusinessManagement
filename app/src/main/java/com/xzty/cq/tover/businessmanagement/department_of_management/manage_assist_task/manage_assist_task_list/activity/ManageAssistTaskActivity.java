@@ -18,6 +18,7 @@ import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assi
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_detail.model.RspAssistProgressDetails;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.adapter.ManageAssistTaskAdapter;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.model.RspAssistTaskDetails;
+import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.model.TaskAddProgressDialog;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.presenter.ManageAssistTaskContract;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.presenter.ManageAssistTaskPresenter;
 
@@ -88,6 +89,15 @@ public class ManageAssistTaskActivity extends ActivityPresenter<ManageAssistTask
         mList = mlist;
         rv_task_manage_assist.setLayoutManager(layoutManager);
         mstAdapter = new ManageAssistTaskAdapter(R.layout.task_assist_recycle_item,mlist);
+        mstAdapter.buttonSetOnClick(new ManageAssistTaskAdapter.ButtonInterface() {
+            @Override
+            public void onClick(View view, int positon) {
+                //TODO  设置协调任务item的添加按钮点击事件
+                Toast.makeText(ManageAssistTaskActivity.this,"添加任务进展"+positon,Toast.LENGTH_LONG).show();
+                new TaskAddProgressDialog(ManageAssistTaskActivity.this).show();
+
+            }
+        });
         mstAdapter.setOnItemClickListener(this);
         rv_task_manage_assist.setAdapter(mstAdapter);
     }

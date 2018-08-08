@@ -22,8 +22,7 @@ public class ManageAssistTaskDetailPresenter extends BasePresenter<ManageAssistT
 
     @Override
     public void onDataLoaded(List<RspAssistProgressDetails> mList) {
-        ManageAssistTaskDetailContract.View view = getView();
-        view.success(mList);
+
     }
 
     @Override
