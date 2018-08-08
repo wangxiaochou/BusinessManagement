@@ -26,7 +26,7 @@ public class ProjectTaskList_Adapter extends BaseQuickAdapter<ProjectTaskList_Li
     @Override
     protected void convert(BaseViewHolder helper, ProjectTaskList_List item) {
         helper.setText(R.id.main_title_item,item.getMeet_Time());
-        helper.setText(R.id.subtitle_item,item.getMeet_Title());
+        helper.setText(R.id.subtitle_item,"项管部"+ item.getMeet_Title() + "会议");
         helper.setText(R.id.thirdtitle_item,item.getMeet_Address());
     }
 }

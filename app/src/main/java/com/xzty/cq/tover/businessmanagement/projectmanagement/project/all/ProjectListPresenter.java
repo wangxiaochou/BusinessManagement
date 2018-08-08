@@ -35,6 +35,7 @@ public class ProjectListPresenter extends BasePresenter<ProjectListContract.View
 
     @Override
     public void onDataNotAvailable(String strRes) {
+
         ProjectListContract.View view = getView();
         view.showError(strRes);
     }

@@ -19,19 +19,17 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="146dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:background="@color/toolbar_background_color"
         android:translationZ="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/project_task_list_toolbar"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/project_task_list_toolbar">
 
         <TextView
             android:id="@+id/conference_host_title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
             android:text="主持人："
             android:textColor="@color/task_title_text_color"
             android:textSize="16sp" />
@@ -40,9 +38,9 @@
             android:id="@+id/conference_host_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:layout_toEndOf="@+id/conference_host_title_text"
             android:paddingStart="4dp"
-            android:text="wangling"
             android:textSize="16sp" />
 
         <TextView
@@ -51,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="126dp"
+            android:layout_marginTop="4dp"
             android:text="记录人："
             android:textColor="@color/task_title_text_color"
             android:textSize="16sp" />
@@ -60,9 +59,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="-126dp"
+            android:layout_marginTop="4dp"
             android:layout_toEndOf="@+id/meeting_recorder_title_text"
             android:paddingStart="4dp"
-            android:text="田停"
             android:textSize="16sp" />
 
         <TextView
@@ -71,8 +70,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/conference_host_title_text"
             android:layout_marginStart="8dp"
-            android:paddingTop="4dp"
-            android:text="地点："
+            android:paddingTop="6dp"
+            android:text="会议地点："
             android:textColor="@color/task_title_text_color"
             android:textSize="16sp" />
 
@@ -83,8 +82,7 @@
             android:layout_below="@+id/conference_host_title_text"
             android:layout_toEndOf="@+id/meeting_place_title_text"
             android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:text="西南中心会议室"
+            android:paddingTop="6dp"
             android:textSize="16sp" />
 
         <TextView
@@ -93,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/meeting_place_title_text"
             android:layout_marginStart="8dp"
-            android:paddingTop="4dp"
+            android:paddingTop="6dp"
             android:text="与会人员："
             android:textColor="@color/task_title_text_color"
             android:textSize="16sp" />
@@ -103,19 +101,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/meeting_place_title_text"
-            android:layout_marginStart="28dp"
+            android:layout_marginStart="4dp"
             android:layout_toEndOf="@+id/meeting_place_title_text"
-            android:paddingTop="4dp"
-            android:text="常亚东，冯荣，王愿愿，张志星，顾成键，田停，王灿，向小勇，黄刚，聂晓磊，卢嘉亮"
+            android:paddingTop="6dp"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/absentee_title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/meeting_people_text"
+            android:layout_below="@+id/meeting_people_title_text"
+            android:layout_marginTop="39dp"
             android:layout_marginStart="8dp"
-            android:paddingTop="5dp"
             android:text="缺席人员："
             android:textColor="@color/task_title_text_color"
             android:textSize="16sp" />
@@ -124,10 +121,9 @@
             android:id="@+id/absentee_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/meeting_people_text"
+            android:layout_below="@+id/meeting_people_title_text"
+            android:layout_marginTop="39dp"
             android:layout_toEndOf="@+id/meeting_people_title_text"
-            android:paddingTop="5dp"
-            android:text="西南中心会议室"
             android:textSize="16sp" />
 
     </RelativeLayout>
@@ -135,23 +131,21 @@
 
     <com.xzty.cq.tover.businessmanagement.department_of_management.project_task.project_task_detail.view.MyScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_height="0dp"
         android:fillViewport="true"
         android:overScrollMode="never"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
 
         <LinearLayout
             android:id="@+id/linearlayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="8dp"
             android:orientation="vertical"
+            android:paddingBottom="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
@@ -161,8 +155,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="上周计划"
-                android:textColor="@color/project_task_detail_title1"
-                android:textSize="18sp" />
+                android:textColor="@color/task_title_text_color"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/last_week_plan_text"
@@ -172,7 +166,6 @@
                 android:background="@color/toolbar_background_color"
                 android:paddingEnd="8dp"
                 android:paddingStart="8dp"
-                android:text="1.4号库檩条全部完成。2.1号库钢梁安装完成墙面檩条安装完成。3.2号库钢柱安装完成。"
                 android:translationZ="3dp" />
 
             <TextView
@@ -181,8 +174,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
                 android:text="本周完成"
-                android:textColor="@color/project_task_detail_title1"
-                android:textSize="18sp" />
+                android:textColor="@color/task_title_text_color"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/this_week_completed_text"
@@ -192,7 +185,6 @@
                 android:background="@color/toolbar_background_color"
                 android:paddingEnd="8dp"
                 android:paddingStart="8dp"
-                android:text="1.1号库钢梁安装完成。2.4号库檩条未开始"
                 android:translationZ="3dp" />
 
             <TextView
@@ -201,8 +193,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
                 android:text="下周计划"
-                android:textColor="@color/project_task_detail_title1"
-                android:textSize="18sp" />
+                android:textColor="@color/task_title_text_color"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/next_week_plan_text"
@@ -212,7 +204,6 @@
                 android:background="@color/toolbar_background_color"
                 android:paddingEnd="8dp"
                 android:paddingStart="8dp"
-                android:text="1.4号库檩条全部完成。2.1号库檩条安装完成。3.2号库钢柱安装完成。4.屋面板压型完成"
                 android:translationZ="3dp" />
 
             <TextView
@@ -221,8 +212,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
                 android:text="协调事宜"
-                android:textColor="@color/project_task_detail_title1"
-                android:textSize="18sp" />
+                android:textColor="@color/task_title_text_color"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/coordination_text"
@@ -232,7 +223,6 @@
                 android:background="@color/toolbar_background_color"
                 android:paddingEnd="8dp"
                 android:paddingStart="8dp"
-                android:text="各项目负责人以规定表格或简要说明形式汇报了上周情况，下周计划和需要协调事宜；项管部根据现场所汇报情况进行了梳理并整理形成意见及协调跟进结果"
                 android:translationZ="3dp" />
 
             <TextView
@@ -241,8 +231,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
                 android:text="资金情况"
-                android:textColor="@color/project_task_detail_title1"
-                android:textSize="18sp" />
+                android:textColor="@color/task_title_text_color"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/funding_situation_text"
@@ -252,7 +242,6 @@
                 android:background="@color/toolbar_background_color"
                 android:paddingEnd="8dp"
                 android:paddingStart="8dp"
-                android:text="1.上周提交的100万已到账！本周有100万的承兑，已联系财务寄到现场，下周有100万的现金办理"
                 android:translationZ="3dp" />
 
             <TextView
@@ -261,8 +250,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
                 android:text="项目团队分析与纠偏"
-                android:textColor="@color/project_task_detail_title1"
-                android:textSize="18sp" />
+                android:textColor="@color/task_title_text_color"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/project_correction_text"
@@ -272,7 +261,6 @@
                 android:background="@color/toolbar_background_color"
                 android:paddingEnd="8dp"
                 android:paddingStart="8dp"
-                android:text="下雨无法施工，工人少"
                 android:translationZ="3dp" />
 
 

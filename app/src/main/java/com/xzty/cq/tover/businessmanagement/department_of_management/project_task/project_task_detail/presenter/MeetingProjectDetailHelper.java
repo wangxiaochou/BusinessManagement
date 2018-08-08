@@ -1,15 +1,11 @@
 package com.xzty.cq.tover.businessmanagement.department_of_management.project_task.project_task_detail.presenter;
 
-import com.xzty.cq.tover.businessmanagement.common.MyApplication;
 import com.xzty.cq.tover.businessmanagement.common.data.DataSourse;
-import com.xzty.cq.tover.businessmanagement.common.factory.Account;
 import com.xzty.cq.tover.businessmanagement.common.model.RspModel;
 import com.xzty.cq.tover.businessmanagement.common.net.NetWork;
 import com.xzty.cq.tover.businessmanagement.department_of_management.project_task.project_task_detail.model.GetMeetingProjectDetail;
 import com.xzty.cq.tover.businessmanagement.department_of_management.project_task.project_task_detail.model.ReqMeetingProjectDetail;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.common.api.RemoteService;
-
-import java.util.List;
 
 import rx.Subscriber;
 import rx.Subscription;

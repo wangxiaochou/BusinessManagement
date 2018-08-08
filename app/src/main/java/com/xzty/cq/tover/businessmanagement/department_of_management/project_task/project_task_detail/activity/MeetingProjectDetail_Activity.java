@@ -52,8 +52,7 @@ public class MeetingProjectDetail_Activity extends ActivityPresenter<MeetingProj
     private int weeks;
     private int years;
     private String project_id;
-
-    Gson gson = new Gson();
+    private String meet_time;
 
 
     public static final String TAG = "LogInterceptor.java";
@@ -72,7 +71,8 @@ public class MeetingProjectDetail_Activity extends ActivityPresenter<MeetingProj
         ReqMeetingProjectDetail reqMeetingProjectDetail = new ReqMeetingProjectDetail(weeks,years,project_id);
         mPresenter.getData(reqMeetingProjectDetail);
 
-
+        meet_time = getIntent().getExtras().getString("meet_time").toString();
+        project_task_list_toolbar.setTitle(meet_time + "日会议");
 
     }
 
@@ -80,6 +80,7 @@ public class MeetingProjectDetail_Activity extends ActivityPresenter<MeetingProj
     protected void initWidget() {
         super.initWidget();
         initToolbar();
+
     }
 
     private void initToolbar() {
@@ -113,24 +114,57 @@ public class MeetingProjectDetail_Activity extends ActivityPresenter<MeetingProj
     @Override
     public void success(GetMeetingProjectDetail list) {
         mlist = list;
-//        String str = gson.toJson(list);
-//        Log.e(TAG,String.format("这是打出来的json转string的日志",str));
+
+
+
         conference_host.setText(mlist.getGetMeetingDetail().getPresenter());
         meeting_recorder.setText(mlist.getGetMeetingDetail().getNotekeeper());
         meeting_place.setText(mlist.getGetMeetingDetail().getMeet_Address());
         meeting_people.setText(mlist.getGetMeetingDetail().getConferee());
-        absentee.setText(mlist.getGetMeetingDetail().getAbsentee());
+        if (mlist.getGetMeetingDetail().getAbsentee() == null){
+            absentee.setText("无");
+        }else{
+            absentee.setText(mlist.getGetMeetingDetail().getAbsentee());
+        }
+
 
         if (mlist.getGetMeetingProjectTaskDetail().getOld_Week_Task() == null){
             last_week_plan.setText("无");
         }else{
             last_week_plan.setText(mlist.getGetMeetingProjectTaskDetail().getOld_Week_Task());
         }
+        if (mlist.getGetMeetingProjectTaskDetail().getWeek_Task() == null){
+            this_week_completed.setText("无");
+        }else{
+            this_week_completed.setText(mlist.getGetMeetingProjectTaskDetail().getWeek_Task());
+        }
+        if (mlist.getGetMeetingProjectTaskDetail().getNext_Week_Task() == null){
+            next_week_plan.setText("无");
+        }else{
+            next_week_plan.setText(mlist.getGetMeetingProjectTaskDetail().getNext_Week_Task());
+        }
+        if (mlist.getGetMeetingProjectTaskDetail().getMediate_Matters() == null){
+            coordination.setText("无");
+        }else{
+            coordination.setText(mlist.getGetMeetingProjectTaskDetail().getMediate_Matters());
+        }
+        if (mlist.getGetMeetingProjectTaskDetail().getFund_Thing() == null){
+            funding_situation.setText("无");
+        }else{
+            funding_situation.setText(mlist.getGetMeetingProjectTaskDetail().getFund_Thing());
+        }
+        if (mlist.getGetMeetingProjectTaskDetail().getAnalyse_Error() == null){
+            project_correction.setText("无");
+        }else{
+            project_correction.setText(mlist.getGetMeetingProjectTaskDetail().getAnalyse_Error());
+        }
 
-        this_week_completed.setText(mlist.getGetMeetingProjectTaskDetail().getWeek_Task());
-        next_week_plan.setText(mlist.getGetMeetingProjectTaskDetail().getNext_Week_Task());
-        coordination.setText(mlist.getGetMeetingProjectTaskDetail().getMediate_Matters());
-        funding_situation.setText(mlist.getGetMeetingProjectTaskDetail().getFund_Thing());
-        project_correction.setText(mlist.getGetMeetingProjectTaskDetail().getAnalyse_Error());
+
+//        last_week_plan.setText(mlist.getGetMeetingProjectTaskDetail().getOld_Week_Task());
+//        this_week_completed.setText(mlist.getGetMeetingProjectTaskDetail().getWeek_Task());
+//        next_week_plan.setText(mlist.getGetMeetingProjectTaskDetail().getNext_Week_Task());
+//        coordination.setText(mlist.getGetMeetingProjectTaskDetail().getMediate_Matters());
+//        funding_situation.setText(mlist.getGetMeetingProjectTaskDetail().getFund_Thing());
+//        project_correction.setText(mlist.getGetMeetingProjectTaskDetail().getAnalyse_Error());
     }
 }
