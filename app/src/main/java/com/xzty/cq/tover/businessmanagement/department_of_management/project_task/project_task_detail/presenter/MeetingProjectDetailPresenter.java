@@ -8,6 +8,11 @@ import com.xzty.cq.tover.businessmanagement.department_of_management.project_tas
 import com.xzty.cq.tover.businessmanagement.department_of_management.project_task.project_task_detail.model.GetMeetingProjectDetail;
 import com.xzty.cq.tover.businessmanagement.department_of_management.project_task.project_task_detail.model.ReqMeetingProjectDetail;
 
+/**
+ * author wl
+ * Created 2018/08/08
+ * explain 周例会详细presenter
+ */
 
 public class MeetingProjectDetailPresenter extends BasePresenter<MeetingProjectDetail_Contract.View>
         implements MeetingProjectDetail_Contract.Presenter,DataSourse.Callback<GetMeetingProjectDetail>{

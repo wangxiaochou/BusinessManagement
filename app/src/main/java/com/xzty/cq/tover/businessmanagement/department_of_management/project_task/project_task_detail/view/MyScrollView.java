@@ -7,6 +7,12 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.widget.ScrollView;
 
+/**
+ * author wl
+ * Created 2018/08/08
+ * explain 周例会详细自定义的scrollview
+ */
+
 public class MyScrollView extends ScrollView {
 
     private Context mContext;

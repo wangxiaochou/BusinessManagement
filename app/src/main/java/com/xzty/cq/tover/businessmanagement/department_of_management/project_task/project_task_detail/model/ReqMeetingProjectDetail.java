@@ -1,5 +1,11 @@
 package com.xzty.cq.tover.businessmanagement.department_of_management.project_task.project_task_detail.model;
 
+/**
+ * author wl
+ * Created 2018/08/08
+ * explain 周例会详细post请求的三个参数的bean
+ */
+
 public class ReqMeetingProjectDetail {
 
     private int weeks,years;

@@ -2,12 +2,10 @@ package com.xzty.cq.tover.businessmanagement.department_of_management.project_ta
 
 import android.util.Log;
 import android.view.View;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
-import com.google.gson.Gson;
 import com.xzty.cq.tover.businessmanagement.R;
 import com.xzty.cq.tover.businessmanagement.common.factory.Account;
 import com.xzty.cq.tover.businessmanagement.common.factory.ActivityPresenter;
@@ -17,6 +15,12 @@ import com.xzty.cq.tover.businessmanagement.department_of_management.project_tas
 import com.xzty.cq.tover.businessmanagement.department_of_management.project_task.project_task_detail.presenter.MeetingProjectDetailPresenter;
 
 import butterknife.BindView;
+
+/**
+ * author wl
+ * Created 2018/08/08
+ * explain 周例会详细细节Activity
+ */
 
 public class MeetingProjectDetail_Activity extends ActivityPresenter<MeetingProjectDetail_Contract.Presenter> implements MeetingProjectDetail_Contract.View{
 
@@ -55,7 +59,7 @@ public class MeetingProjectDetail_Activity extends ActivityPresenter<MeetingProj
     private String meet_time;
 
 
-    public static final String TAG = "LogInterceptor.java";
+    public static final String TAG = "日志打印——令  ";
 
     @Override
     protected int getContentLayoutId() {
@@ -65,11 +69,13 @@ public class MeetingProjectDetail_Activity extends ActivityPresenter<MeetingProj
     @Override
     protected void initData() {
         super.initData();
+        Account.load(this);
         project_id = Account.getProjectId();
         weeks = getIntent().getExtras().getInt("weeks");
         years = getIntent().getExtras().getInt("years");
         ReqMeetingProjectDetail reqMeetingProjectDetail = new ReqMeetingProjectDetail(weeks,years,project_id);
         mPresenter.getData(reqMeetingProjectDetail);
+        Log.e(TAG,String.format("这是发送给的服务器的三个参数   ——  "+ "周数"+ weeks + "——年份" + years + "——项目ID" + project_id,reqMeetingProjectDetail));
 
         meet_time = getIntent().getExtras().getString("meet_time").toString();
         project_task_list_toolbar.setTitle(meet_time + "日会议");
@@ -115,8 +121,6 @@ public class MeetingProjectDetail_Activity extends ActivityPresenter<MeetingProj
     public void success(GetMeetingProjectDetail list) {
         mlist = list;
 
-
-
         conference_host.setText(mlist.getGetMeetingDetail().getPresenter());
         meeting_recorder.setText(mlist.getGetMeetingDetail().getNotekeeper());
         meeting_place.setText(mlist.getGetMeetingDetail().getMeet_Address());
@@ -132,11 +136,13 @@ public class MeetingProjectDetail_Activity extends ActivityPresenter<MeetingProj
             last_week_plan.setText("无");
         }else{
             last_week_plan.setText(mlist.getGetMeetingProjectTaskDetail().getOld_Week_Task());
+            Log.e(TAG,String.format("这是获取的上周任务   ——  "+ mlist.getGetMeetingProjectTaskDetail().getOld_Week_Task().toString(),last_week_plan));
         }
         if (mlist.getGetMeetingProjectTaskDetail().getWeek_Task() == null){
             this_week_completed.setText("无");
         }else{
             this_week_completed.setText(mlist.getGetMeetingProjectTaskDetail().getWeek_Task());
+            Log.e(TAG,String.format("这是获取的本周完成的任务   ——  "+ mlist.getGetMeetingProjectTaskDetail().getWeek_Task().toString(),this_week_completed));
         }
         if (mlist.getGetMeetingProjectTaskDetail().getNext_Week_Task() == null){
             next_week_plan.setText("无");

@@ -2,6 +2,12 @@ package com.xzty.cq.tover.businessmanagement.department_of_management.project_ta
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * author wl
+ * Created 2018/08/08
+ * explain 周例会详细项目周任务参数的bean
+ */
+
 public class GetMeetingProjectTaskDetail {
 
     @SerializedName("id")

@@ -48,7 +48,7 @@ public class ProjectTaskList_Activity extends ActivityPresenter<ProjectTaskList_
     @Override
     protected void initData() {
         super.initData();
-        int id = getIntent().getIntExtra("id",-1);
+        int id = getIntent().getIntExtra("id",1);
         mPresenter.getProjectTaskList(id);
     }
 
