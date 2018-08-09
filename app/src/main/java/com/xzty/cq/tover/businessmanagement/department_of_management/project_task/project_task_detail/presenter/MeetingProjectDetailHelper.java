@@ -37,6 +37,7 @@ public class MeetingProjectDetailHelper {
             @Override
             public void onError(Throwable e) {
                 callback.onDataNotAvailable("请求失败" + e.getMessage());
+                Log.e(TAG,String.format("这是输出的错误信息   ——  "+ e.getMessage(),callback));
             }
 
             @Override
