@@ -13,7 +13,8 @@ import java.util.List;
  * explain
  */
 
-public class OtherDiliverDetailsPresenter extends BasePresenter<OtherDiliverDetailsContract.View> implements OtherDiliverDetailsContract.Presenter ,DataSourse.Callback{
+public class OtherDiliverDetailsPresenter extends BasePresenter<OtherDiliverDetailsContract.View>
+        implements OtherDiliverDetailsContract.Presenter ,DataSourse.Callback{
     public OtherDiliverDetailsPresenter(OtherDiliverDetailsContract.View view) {
         super(view);
     }

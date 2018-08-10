@@ -8,8 +8,10 @@ package com.xzty.cq.tover.businessmanagement.common.net;
 
 public class Common {
     public interface Constance {
-//        String BASE_URL = "http://47.94.200.135/admin/";
-        String BASE_URL = "http://192.168.0.162/menu/";
+        //外部服务器
+        String BASE_URL = "http://erp.tover.group/menu/";
+        //本地服务器
+//        String BASE_URL = "http://192.168.0.162/menu/";
 
         /**
          * 获取图片地址

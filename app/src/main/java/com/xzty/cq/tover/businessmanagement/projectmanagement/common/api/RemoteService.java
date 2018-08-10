@@ -499,7 +499,7 @@ public interface RemoteService {
 
     //项管部-项目任务-周例会清单
     @GET("Androidweektask/projectmeetlst")
-    Observable<RspModel<ProjectTaskList_List>> getId(@Query("id") int id);
+    Observable<RspModel<List<ProjectTaskList_List>>> getId(@Query("id") int id);
 
     //项管部-项目任务-周例会项目任务
     @POST("Androidweektask/projectmeetdetail")

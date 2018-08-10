@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ProjectTaskList_Presenter extends BasePresenter<ProjectTaskList_Contract.View> implements ProjectTaskList_Contract.Presenter,DataSourse.Callback<ProjectTaskList_List>{
+public class ProjectTaskList_Presenter extends BasePresenter<ProjectTaskList_Contract.View>
+        implements ProjectTaskList_Contract.Presenter,DataSourse.Callback<List<ProjectTaskList_List>>{
 
     public ProjectTaskList_Presenter(ProjectTaskList_Contract.View view){
         super(view);
@@ -24,11 +25,9 @@ public class ProjectTaskList_Presenter extends BasePresenter<ProjectTaskList_Con
     }
 
     @Override
-    public void onDataLoaded(ProjectTaskList_List mlist) {
+    public void onDataLoaded(List<ProjectTaskList_List> mlist) {
         ProjectTaskList_Contract.View view = getView();
-        List<ProjectTaskList_List> list = new ArrayList<ProjectTaskList_List>();
-        list.add(mlist);
-        view.success(list);
+        view.success(mlist);
     }
 
     @Override
