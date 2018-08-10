@@ -13,19 +13,16 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xzty.cq.tover.businessmanagement.R;
 import com.xzty.cq.tover.businessmanagement.common.factory.Account;
 import com.xzty.cq.tover.businessmanagement.common.factory.ActivityPresenter;
-import com.xzty.cq.tover.businessmanagement.common.factory.BaseContract;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_detail.activity.ManageAssistTaskDetailActivity;
-import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_detail.model.RspAssistProgressDetails;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.adapter.ManageAssistTaskAdapter;
+import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.model.ReqAssistAddProgress;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.model.RspAssistTaskDetails;
-import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.model.TaskAddProgressDialog;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.presenter.ManageAssistTaskContract;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.presenter.ManageAssistTaskPresenter;
 
 import java.util.List;
 
 import butterknife.BindView;
-import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * author yq
@@ -85,7 +82,7 @@ public class ManageAssistTaskActivity extends ActivityPresenter<ManageAssistTask
         });
     }
 
-    public void setAdaper(List<RspAssistTaskDetails> mlist){
+    public void setAdaper(final List<RspAssistTaskDetails> mlist){
         mList = mlist;
         rv_task_manage_assist.setLayoutManager(layoutManager);
         mstAdapter = new ManageAssistTaskAdapter(R.layout.task_assist_recycle_item,mlist);
@@ -93,8 +90,10 @@ public class ManageAssistTaskActivity extends ActivityPresenter<ManageAssistTask
             @Override
             public void onClick(View view, int positon) {
                 //TODO  设置协调任务item的添加按钮点击事件
+                ReqAssistAddProgress raaProgress = new ReqAssistAddProgress(mlist.get(positon).getId(),mlist.get(positon).getEmplId(),
+                        mlist.get(positon).getEmplName());
                 Toast.makeText(ManageAssistTaskActivity.this,"添加任务进展"+positon,Toast.LENGTH_LONG).show();
-                new TaskAddProgressDialog(ManageAssistTaskActivity.this).show();
+                new TaskAddProgressDialog(ManageAssistTaskActivity.this,R.style.Dialog_Fullscreen,raaProgress).show();
 
             }
         });

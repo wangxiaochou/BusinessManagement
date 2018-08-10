@@ -27,7 +27,7 @@ public class RspAssistTaskDetails {
     private String chargePerson;
 
     //创建人ID
-    @SerializedName("empl_id")
+    @SerializedName("eply_id")
     private String emplId;
 
     //创建人姓名

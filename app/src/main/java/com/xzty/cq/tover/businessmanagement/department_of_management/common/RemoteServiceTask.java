@@ -2,11 +2,14 @@ package com.xzty.cq.tover.businessmanagement.department_of_management.common;
 
 import com.xzty.cq.tover.businessmanagement.common.model.RspModel;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_detail.model.RspAssistProgressDetails;
+import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.model.ReqAssistAddProgress;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.model.RspAssistTaskDetails;
 
 import java.util.List;
 
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -35,4 +38,7 @@ public interface RemoteServiceTask {
      */
     //TODO
     Observable<RspModel<List<RspAssistProgressDetails>>> getAssistProgressDetails(@Query("work_id") int assistTaskId);
+
+    @POST("Androidprojectworks/androidtrackmsg")
+    Observable<RspModel> addAssistProgress(@Body ReqAssistAddProgress reqProgress);
 }

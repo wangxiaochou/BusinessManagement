@@ -5,42 +5,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="@dimen/dp_40"
-    android:layout_marginBottom="@dimen/dp_72"
-    android:layout_marginStart="@dimen/dp_10"
-    android:layout_marginEnd="@dimen/dp_10"
-    android:layout_gravity="center_vertical"
-    android:background="@drawable/bg_dialog_round_white">
+    android:layout_marginTop="@dimen/dp_120"
+    android:layout_marginBottom="@dimen/dp_120"
+    android:layout_gravity="center"
+    android:background="#F6FFFF"
+    >
 
     <EditText
         android:id="@+id/et_addprogress_expecttime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/shape_edit_task_process"
         android:ems="10"
         android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_addprogress_date" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/tv_addprogress_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:text="预计完成时间："
+        android:layout_marginTop="8dp"
+        android:text="@string/task_textview_expectime"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/rg_add_progress_type" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/tv_addprogress_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:text="输入进展信息："
+        android:text="@string/task_textview_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_addprogress_expecttime" />
 
@@ -48,11 +49,13 @@
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="添加任务进展"
-        android:textSize="@dimen/sp_18"
+        android:textSize="@dimen/sp_20"
         android:shadowDy="-2"
         android:shadowDx="-2"
         android:shadowRadius="1"
@@ -66,14 +69,74 @@
         android:id="@+id/et_addprogress_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/shape_edit_task_process"
-        android:ems="10"
-        android:inputType="text"
         android:imeOptions="actionDone"
-        android:minHeight="@dimen/dp_120"
+        android:inputType="textMultiLine"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_addprogress_content" />
+
+    <Button
+        android:id="@+id/bt_addprogress_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:textSize="@dimen/sp_18"
+        android:textColor="#65DCDF"
+        android:text="取消"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/bt_addprogress_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="@dimen/sp_18"
+        android:textColor="#F52C1F"
+        android:shadowColor="#000C90"
+        android:shadowRadius="1"
+        android:shadowDx="-2"
+        android:shadowDy="-1"
+        android:text="保存"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/rg_add_progress_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/textView11">
+
+        <RadioButton
+            android:id="@+id/rb_add_progress_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="正常进展"
+            android:checked="true"
+            tools:layout_editor_absoluteX="228dp"
+            tools:layout_editor_absoluteY="47dp" />
+
+        <RadioButton
+            android:id="@+id/rb_add_progress_overdue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="任务逾期"
+            tools:layout_editor_absoluteX="228dp"
+            tools:layout_editor_absoluteY="47dp" />
+
+    </RadioGroup>
+
+
 
 </android.support.constraint.ConstraintLayout>

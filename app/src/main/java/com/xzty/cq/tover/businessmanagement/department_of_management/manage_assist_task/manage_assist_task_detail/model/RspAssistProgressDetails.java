@@ -38,6 +38,10 @@ public class RspAssistProgressDetails {
     @SerializedName("is_delete")
     private int isDelete;
 
+    //进展类型
+    @SerializedName("type")
+    private int type;
+
     public int getId() {
         return id;
     }
@@ -102,6 +106,14 @@ public class RspAssistProgressDetails {
         this.isDelete = isDelete;
     }
 
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "RspAssistProgressDetails{" +
@@ -113,6 +125,7 @@ public class RspAssistProgressDetails {
                 ", eplyName='" + eplyName + '\'' +
                 ", createTime='" + createTime + '\'' +
                 ", isDelete=" + isDelete +
+                ", type=" + type +
                 '}';
     }
 }

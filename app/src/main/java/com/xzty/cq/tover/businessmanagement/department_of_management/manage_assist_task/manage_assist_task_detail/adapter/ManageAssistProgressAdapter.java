@@ -31,28 +31,32 @@ public class ManageAssistProgressAdapter extends BaseQuickAdapter<RspAssistProgr
             newestId = -1;
             oldestId = -1;
         }else if (dataSize == 1){
-            newestId = -1;
-            oldestId = getData().get(0).getId();
+            newestId = getData().get(0).getId();
+            oldestId = -1;
         }
         else {
-            newestId = getData().get(dataSize-1).getId();
-            oldestId = getData().get(0).getId();
+            newestId = getData().get(0).getId();
+            oldestId = getData().get(dataSize-1).getId();
         }
 
     }
     @Override
     protected void convert(BaseViewHolder helper, RspAssistProgressDetails item) {
-        DateUtil.strToDate(item.getExpectTime());
-        helper.setText(R.id.tv_task_progress_date,item.getExpectTime());
+        ;
+        helper.setText(R.id.tv_task_progress_date,item.getCreateTime().substring(0,10));
         helper.setText(R.id.tv_task_progress_content,item.getTrackContent());
+        helper.setImageResource(R.id.iv_task_progress_typeimage,item.getType()==0?R.drawable.iv_task_progress_complet:R.drawable.iv_task_progress_overdue);
 
         //设置最新和最早进展样式
         if (item.getId() ==newestId){
-            helper.setBackgroundColor(R.id.view_task_progress_bottomline,mContext.getResources().getColor(R.color.white));
-            helper.setImageResource(R.id.iv_task_progress_typeimage,R.drawable.iv_task_assist_start_circle);
+
+            if (item.getType()!=1){
+                helper.setImageResource(R.id.iv_task_progress_typeimage,R.drawable.iv_task_progress_newest);
+            }
         }
         if (item.getId() ==oldestId){
-            helper.setImageResource(R.id.iv_task_progress_typeimage,R.drawable.iv_task_progress_newest);
+            helper.setImageResource(R.id.iv_task_progress_typeimage,R.drawable.iv_task_assist_start_circle);
+            helper.setBackgroundColor(R.id.view_task_progress_bottomline,mContext.getResources().getColor(R.color.white));
         }
         if (dataSize == 1){
             helper.setBackgroundColor(R.id.view_task_progress_bottomline,mContext.getResources().getColor(R.color.white));

@@ -16,11 +16,10 @@ import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assi
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_detail.model.RspAssistProgressDetails;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_detail.presenter.ManageAssistTaskDetailContract;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_detail.presenter.ManageAssistTaskDetailPresenter;
-import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.activity.ManageAssistTaskActivity;
+import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.model.ReqAssistAddProgress;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.model.RspAssistTaskDetails;
-import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.model.TaskAddProgressDialog;
+import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.activity.TaskAddProgressDialog;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -91,7 +90,9 @@ public class ManageAssistTaskDetailActivity extends ActivityPresenter<ManageAssi
             public void onClick(View v) {
                 //TODO
                 Toast.makeText(ManageAssistTaskDetailActivity.this,"添加任务进展",Toast.LENGTH_LONG).show();
-                new TaskAddProgressDialog(ManageAssistTaskDetailActivity.this).show();
+                ReqAssistAddProgress raaProgress = new ReqAssistAddProgress(ratDetail.getId(),ratDetail.getEmplId(),
+                        ratDetail.getEmplName());
+                new TaskAddProgressDialog(ManageAssistTaskDetailActivity.this,R.style.Dialog_Fullscreen,raaProgress).show();
             }
         });
     }
