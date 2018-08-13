@@ -10,7 +10,10 @@ import com.xzty.cq.tover.businessmanagement.R;
 import com.xzty.cq.tover.businessmanagement.common.model.EmployeeModel;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_detail.model.RspAssistProgressDetails;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.model.RspAssistTaskDetails;
+import com.xzty.cq.tover.businessmanagement.projectmanagement.utils.DateUtil;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -39,13 +42,59 @@ public class ManageAssistTaskAdapter extends BaseQuickAdapter<RspAssistTaskDetai
         }
         helper.setText(R.id.tv_task_assist_charge_person,chargepersonName );*/
         helper.setText(R.id.tv_task_assist_charge_person,item.getChargePerson());
-        helper.setText(R.id.tv_task_assist_expect_time,"预计完成时间："+item.getExpectTime());
+
+        //设置预计完成时间，添加颜色提示
+        helper.setText(R.id.tv_task_assist_expect_time,item.getExpectTime());
+        helper.setTextColor(R.id.tv_task_assist_expect_time,getTimeColor(item.getExpectTime()));
         helper.setText(R.id.tv_task_assist_content,item.getAssistTask());
         //获取并设置最新任务进展
         int progSize = item.getTaskProgresses().size();
         if (progSize!=0){
             helper.setText(R.id.tv_task_assist_newest,item.getTaskProgresses().get(progSize-1).getTrackContent());
         }
+    }
+
+    /**
+     * 获取预计完成时间对应的提示颜色
+     * @param expectTime
+     * @return 颜色ID
+     */
+    public int getTimeColor(String expectTime){
+        int differDay;
+        final int SAFEDAY = 1;
+        final int WARNING = 2;
+        final int OVERDUE = 3;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(DateUtil.stringToDate(expectTime));
+        //当前时间
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTime(new Date());
+
+        int expectDay = calendar.get(Calendar.DAY_OF_YEAR);
+        int currentDay = calendar2.get(Calendar.DAY_OF_YEAR);
+        int expectYear = calendar.get(Calendar.YEAR);
+        int currentYear = calendar2.get(Calendar.YEAR);
+
+
+        if (currentYear > expectYear) {
+            currentDay += 365;
+        }
+        if (currentYear < expectDay){
+            expectDay += 365;
+        }
+        differDay = expectDay - currentDay;
+
+        //根据当前时间与预计时间差值设置字体颜色
+        if (differDay > 3 ){
+            return mContext.getResources().getColor(R.color.task_assist_time_insafe);
+        }
+        if ( differDay <= 3  && differDay > 0){
+            return mContext.getResources().getColor(R.color.task_assist_time_warning);
+        }
+        if (differDay <= 0){
+            return mContext.getResources().getColor(R.color.task_assist_time_overdue);
+        }
+        return 0;
     }
 
     /**

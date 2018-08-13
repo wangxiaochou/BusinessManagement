@@ -13,10 +13,10 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class AssistProgressDetailsHelper {
-    public static void getAssistProgressDetails(int assistTaskId,final DataSourse.Callback<List<RspAssistProgressDetails>> callback){
+    public static void setAssistTaskDone(int assistTaskId,final DataSourse.Callback<RspModel> callback) {
         RemoteServiceTask service = NetWork.remote(RemoteServiceTask.class);
-        Subscription subscription = service.getAssistProgressDetails(assistTaskId).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<RspModel<List<RspAssistProgressDetails>>>() {
+        Subscription subscription = service.setAssistTaskDone(assistTaskId).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<RspModel>() {
                     @Override
                     public void onCompleted() {
 
@@ -28,16 +28,14 @@ public class AssistProgressDetailsHelper {
                     }
 
                     @Override
-                    public void onNext(RspModel<List<RspAssistProgressDetails>> listRspModel) {
-                        int code = listRspModel.getBackcode();
-                        if (code == 1){
-                            List<RspAssistProgressDetails> mList = listRspModel.getData();
-                            callback.onDataLoaded(mList);
+                    public void onNext(RspModel rspModel) {
+                        if (rspModel.getBackcode() == 1){
+                            callback.onDataLoaded(rspModel);
                         }else {
-                            callback.onDataNotAvailable("请求错误");
+                            callback.onDataNotAvailable(rspModel.getMessage());
                         }
                     }
                 });
-
     }
+
 }

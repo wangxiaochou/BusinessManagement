@@ -34,10 +34,11 @@ public class ReqAssistAddProgress {
     public ReqAssistAddProgress() {
     }
 
-    public ReqAssistAddProgress(int work_id, String eply_id, String eply_name) {
+    public ReqAssistAddProgress(int work_id, String eply_id, String eply_name,String expect_time) {
         this.work_id = work_id;
         this.eply_id = eply_id;
         this.eply_name = eply_name;
+        this.expect_time = expect_time;
     }
 
     public int getWork_id() {

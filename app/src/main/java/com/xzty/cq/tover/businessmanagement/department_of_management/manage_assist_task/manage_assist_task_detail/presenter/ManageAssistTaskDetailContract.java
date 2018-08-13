@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface ManageAssistTaskDetailContract {
     interface View extends BaseContract.View<ManageAssistTaskDetailContract.Presenter>{
-        //查询成功执行的方法
-        void success(List<RspAssistProgressDetails> mlist);
+        //修改成功执行的方法
+        void success();
     }
     interface Presenter extends BaseContract.Presenter{
-        void getAssistProgressDetails(int assistTaskId);
+        void setAssistTaskDone(int assistTaskId);
     }
 }

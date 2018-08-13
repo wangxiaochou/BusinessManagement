@@ -214,7 +214,6 @@
                     android:text="负责人：张志星张志星张志星张志星张志"
                     android:textColor="@color/task_title_text_black"
                     android:textSize="@dimen/sp_16"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_task_details_createperson" />
 
@@ -228,6 +227,17 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_task_details_createtime" />
 
+                <TextView
+                    android:id="@+id/tv_task_details_expectime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="预计完成时间:"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_task_details_charge_person" />
                 <TextView
                     android:id="@+id/tv_task_details_createtime"
                     android:layout_width="wrap_content"
@@ -286,19 +296,29 @@
                         android:background="@color/task_title_text_black" />
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/tv_task_details_overduetimes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="8dp"
+                    android:text="该任务尚未逾期"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ll_cutline_taskProgress" />
+
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_task_details_progresses"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingBottom="@dimen/dp_72"
                     android:layout_marginEnd="4dp"
                     android:layout_marginStart="4dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="8dp"
                     android:nestedScrollingEnabled="false"
+                    android:paddingBottom="@dimen/dp_72"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ll_cutline_taskProgress" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_task_details_overduetimes" />
 
             </android.support.constraint.ConstraintLayout>
         </android.support.constraint.ConstraintLayout>

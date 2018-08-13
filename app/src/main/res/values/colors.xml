@@ -23,6 +23,9 @@
     <color name="task_progress_button_underway">#0BC9FF</color>
     <color name="task_progress_add_dialog_title">#66B9FF</color>
     <color name="task_progress_add_dialog_shadow">#24465C</color>
+    <color name="task_assist_time_insafe">#45C188</color>
+    <color name="task_assist_time_warning">#DFE208</color>
+    <color name="task_assist_time_overdue">#E2371C</color>
 
 
     <!--2018/07/31 wl-->

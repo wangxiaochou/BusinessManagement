@@ -86,13 +86,14 @@ public class ManageAssistTaskActivity extends ActivityPresenter<ManageAssistTask
         mList = mlist;
         rv_task_manage_assist.setLayoutManager(layoutManager);
         mstAdapter = new ManageAssistTaskAdapter(R.layout.task_assist_recycle_item,mlist);
+
+        //  设置协调任务item的添加按钮点击事件
         mstAdapter.buttonSetOnClick(new ManageAssistTaskAdapter.ButtonInterface() {
             @Override
             public void onClick(View view, int positon) {
-                //TODO  设置协调任务item的添加按钮点击事件
+
                 ReqAssistAddProgress raaProgress = new ReqAssistAddProgress(mlist.get(positon).getId(),mlist.get(positon).getEmplId(),
-                        mlist.get(positon).getEmplName());
-                Toast.makeText(ManageAssistTaskActivity.this,"添加任务进展"+positon,Toast.LENGTH_LONG).show();
+                        mlist.get(positon).getEmplName(),mlist.get(positon).getExpectTime());
                 new TaskAddProgressDialog(ManageAssistTaskActivity.this,R.style.Dialog_Fullscreen,raaProgress).show();
 
             }

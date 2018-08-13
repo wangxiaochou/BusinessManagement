@@ -31,14 +31,20 @@ public interface RemoteServiceTask {
     Observable<RspModel<List<RspAssistTaskDetails>>> getTasks(@Query("PROJECT_ID") String projectId);
 
     /**
-     * @Author yq
-     * 获取协调任务进展详情
+     * Author yq
+     * 修改协调任务状态为已完成
      * @param assistTaskId
      * @return
      */
-    //TODO
-    Observable<RspModel<List<RspAssistProgressDetails>>> getAssistProgressDetails(@Query("work_id") int assistTaskId);
+    @GET("Androidprojectworks/androidchangestuts")
+    Observable<RspModel> setAssistTaskDone(@Query("id") int assistTaskId);
 
+    /**
+     * author yq
+     * 添加协调任务进展
+     * @param reqProgress
+     * @return
+     */
     @POST("Androidprojectworks/androidtrackmsg")
     Observable<RspModel> addAssistProgress(@Body ReqAssistAddProgress reqProgress);
 }

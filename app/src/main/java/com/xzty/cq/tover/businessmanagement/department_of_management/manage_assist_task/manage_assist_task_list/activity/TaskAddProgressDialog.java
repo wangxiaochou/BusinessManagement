@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.xzty.cq.tover.businessmanagement.R;
+import com.xzty.cq.tover.businessmanagement.department_of_management.common.util.MDatePickerDialog;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.model.ReqAssistAddProgress;
 import com.xzty.cq.tover.businessmanagement.department_of_management.manage_assist_task.manage_assist_task_list.presenter.TaskAddProgressPresenter;
 
@@ -80,10 +81,14 @@ public class TaskAddProgressDialog extends Dialog implements View.OnClickListene
         chooseDateText = findViewById(R.id.tv_addprogress_date);
         contentText = findViewById(R.id.tv_addprogress_content);
 
+        //初始化数据
+        expectTime.setText(raaProgress.getExpect_time());
+
         //设置监听
         type.setOnCheckedChangeListener(this);
         cancelBtn.setOnClickListener(this);
         saveBtn.setOnClickListener(this);
+        expectTime.setOnClickListener(this);
     }
 
     //验证信息是否填写正确
@@ -111,6 +116,7 @@ public class TaskAddProgressDialog extends Dialog implements View.OnClickListene
         return this.raaProgress;
     }
 
+    //为按钮添加点击事件
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -126,9 +132,12 @@ public class TaskAddProgressDialog extends Dialog implements View.OnClickListene
                     tapPresenter.addTaskProgress(this,raaProgress);
                     break;
                 }
+            case R.id.et_addprogress_expecttime:
+                new MDatePickerDialog(getContext(),expectTime).showDialog();
         }
     }
 
+    //为单选按钮添加点击事件
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId){
@@ -143,12 +152,13 @@ public class TaskAddProgressDialog extends Dialog implements View.OnClickListene
         }
     }
 
+    //用于presenter的回调方法添加成功
     public void addSuccess(){
         Toast.makeText(super.getContext(),"添加任务进展成功",Toast.LENGTH_LONG).show();
         this.dismiss();
         getContext().startActivity(new Intent(getContext(), ManageAssistTaskActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
     }
-
+    //用于presenter的回调方法,添加失败
     public void addFalse(String strRes){
         Toast.makeText(super.getContext(),"添加任务进展失败"+strRes,Toast.LENGTH_LONG).show();
     }

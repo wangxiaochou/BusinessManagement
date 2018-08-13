@@ -38,7 +38,7 @@ public class RspAssistProgressDetails {
     @SerializedName("is_delete")
     private int isDelete;
 
-    //进展类型
+    //进展类型(0:正常，1：逾期)
     @SerializedName("type")
     private int type;
 

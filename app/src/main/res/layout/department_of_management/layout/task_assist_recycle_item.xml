@@ -90,8 +90,17 @@
                     android:gravity="center_vertical"
                     android:textSize="@dimen/sp_12" />
                 <TextView
-                    android:id="@+id/tv_task_assist_expect_time"
+                    android:id="@+id/tv_task_assist_expect_text"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="预计完成时间:"
+                    android:textSize="@dimen/sp_12"/>
+                <TextView
+                    android:id="@+id/tv_task_assist_expect_time"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:text="2017/7/8"
