@@ -80,9 +80,7 @@ public class ProjectTaskList_Activity extends ActivityPresenter<ProjectTaskList_
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         Intent intent = new Intent(this, MeetingProjectDetail_Activity.class);
-//        intent.putExtra("Id",projecttask_list.
         intent.putExtra("meet_time",projecttask_list.get(position).getMeet_Time());
-//        intent.putExtra("meet_title",projecttask_list.get(position).getMeet_Title());
         intent.putExtra("weeks",projecttask_list.get(position).getWeeks());
         intent.putExtra("years",projecttask_list.get(position).getYears());
         startActivity(intent);

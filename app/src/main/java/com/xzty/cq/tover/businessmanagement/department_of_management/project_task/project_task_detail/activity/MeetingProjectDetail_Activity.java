@@ -108,8 +108,6 @@ public class MeetingProjectDetail_Activity extends ActivityPresenter<MeetingProj
     @Override
     protected MeetingProjectDetail_Contract.Presenter initPresenter() {
         return new MeetingProjectDetailPresenter(this);
-
-
     }
 
     @Override
@@ -131,46 +129,49 @@ public class MeetingProjectDetail_Activity extends ActivityPresenter<MeetingProj
             absentee.setText(mlist.getGetMeetingDetail().getAbsentee());
         }
 
+        if (mlist.getGetMeetingProjectTaskDetail() == null){
+            last_week_plan.setText("无");
+            this_week_completed.setText("无");
+            next_week_plan.setText("无");
+            coordination.setText("无");
+            funding_situation.setText("无");
+            project_correction.setText("无");
+        }else if (mlist.getGetMeetingProjectTaskDetail() != null){
+            if (mlist.getGetMeetingProjectTaskDetail().getOld_Week_Task() == null){
+                last_week_plan.setText("无");
+            }else{
+                last_week_plan.setText(mlist.getGetMeetingProjectTaskDetail().getOld_Week_Task());
+            }
 
-//        if (mlist.getGetMeetingProjectTaskDetail().getOld_Week_Task() == null){
-//            last_week_plan.setText("无");
-//        }else{
-//            last_week_plan.setText(mlist.getGetMeetingProjectTaskDetail().getOld_Week_Task());
-//            Log.e(TAG,String.format("这是获取的上周任务   ——  "+ mlist.getGetMeetingProjectTaskDetail().getOld_Week_Task().toString(),last_week_plan));
-//        }
-//        if (mlist.getGetMeetingProjectTaskDetail().getWeek_Task() == null){
-//            this_week_completed.setText("无");
-//        }else{
-//            this_week_completed.setText(mlist.getGetMeetingProjectTaskDetail().getWeek_Task());
-//            Log.e(TAG,String.format("这是获取的本周完成的任务   ——  "+ mlist.getGetMeetingProjectTaskDetail().getWeek_Task().toString(),this_week_completed));
-//        }
-//        if (mlist.getGetMeetingProjectTaskDetail().getNext_Week_Task() == null){
-//            next_week_plan.setText("无");
-//        }else{
-//            next_week_plan.setText(mlist.getGetMeetingProjectTaskDetail().getNext_Week_Task());
-//        }
-//        if (mlist.getGetMeetingProjectTaskDetail().getMediate_Matters() == null){
-//            coordination.setText("无");
-//        }else{
-//            coordination.setText(mlist.getGetMeetingProjectTaskDetail().getMediate_Matters());
-//        }
-//        if (mlist.getGetMeetingProjectTaskDetail().getFund_Thing() == null){
-//            funding_situation.setText("无");
-//        }else{
-//            funding_situation.setText(mlist.getGetMeetingProjectTaskDetail().getFund_Thing());
-//        }
-//        if (mlist.getGetMeetingProjectTaskDetail().getAnalyse_Error() == null){
-//            project_correction.setText("无");
-//        }else{
-//            project_correction.setText(mlist.getGetMeetingProjectTaskDetail().getAnalyse_Error());
-//        }
+            if (mlist.getGetMeetingProjectTaskDetail().getWeek_Task() == null){
+                this_week_completed.setText("无");
+            }else{
+                this_week_completed.setText(mlist.getGetMeetingProjectTaskDetail().getWeek_Task());
+            }
 
+            if (mlist.getGetMeetingProjectTaskDetail().getNext_Week_Task() == null){
+                next_week_plan.setText("无");
+            }else{
+                next_week_plan.setText(mlist.getGetMeetingProjectTaskDetail().getNext_Week_Task());
+            }
 
-        last_week_plan.setText(mlist.getGetMeetingProjectTaskDetail().getOld_Week_Task());
-        this_week_completed.setText(mlist.getGetMeetingProjectTaskDetail().getWeek_Task());
-        next_week_plan.setText(mlist.getGetMeetingProjectTaskDetail().getNext_Week_Task());
-        coordination.setText(mlist.getGetMeetingProjectTaskDetail().getMediate_Matters());
-        funding_situation.setText(mlist.getGetMeetingProjectTaskDetail().getFund_Thing());
-        project_correction.setText(mlist.getGetMeetingProjectTaskDetail().getAnalyse_Error());
+            if (mlist.getGetMeetingProjectTaskDetail().getMediate_Matters() == null){
+                coordination.setText("无");
+            }else{
+                coordination.setText(mlist.getGetMeetingProjectTaskDetail().getMediate_Matters());
+            }
+
+            if (mlist.getGetMeetingProjectTaskDetail().getFund_Thing() == null){
+                funding_situation.setText("无");
+            }else{
+                funding_situation.setText(mlist.getGetMeetingProjectTaskDetail().getFund_Thing());
+            }
+
+            if (mlist.getGetMeetingProjectTaskDetail().getAnalyse_Error() == null){
+                project_correction.setText("无");
+            }else{
+                project_correction.setText(mlist.getGetMeetingProjectTaskDetail().getAnalyse_Error());
+            }
+        }
     }
 }

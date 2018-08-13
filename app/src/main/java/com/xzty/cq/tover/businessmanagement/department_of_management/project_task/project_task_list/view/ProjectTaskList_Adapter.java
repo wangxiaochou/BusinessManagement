@@ -8,6 +8,7 @@ package com.xzty.cq.tover.businessmanagement.department_of_management.project_ta
 
 
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
