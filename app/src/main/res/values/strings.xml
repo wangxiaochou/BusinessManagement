@@ -19,6 +19,6 @@
 
 
     <!--2018/07/31 wl-->
-    <string name="project_task_list_title">周例会列表</string>
+    <string name="project_task_list_title">周报表</string>
     <string name="project_task_list_detail">周例会项目任务</string>
 </resources>

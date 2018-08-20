@@ -1,7 +1,5 @@
 package com.xzty.cq.tover.businessmanagement.department_of_management.project_task.project_task_detail.presenter;
 
-import android.util.Log;
-
 import com.xzty.cq.tover.businessmanagement.common.data.DataSourse;
 import com.xzty.cq.tover.businessmanagement.common.factory.BasePresenter;
 import com.xzty.cq.tover.businessmanagement.department_of_management.project_task.project_task_detail.contract.MeetingProjectDetail_Contract;

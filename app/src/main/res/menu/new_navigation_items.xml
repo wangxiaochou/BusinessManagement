@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/part"
+        android:icon="@drawable/drawable_new_ic_part"
+        android:title="构件管理"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/tool"
+        android:icon="@drawable/drawable_new_ic_tool"
+        android:title="机具管理"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/department_manage"
+        android:icon="@drawable/drawable_new_ic_department"
+        android:title="项管部"
+        app:showAsAction="ifRoom" />
+
+</menu>

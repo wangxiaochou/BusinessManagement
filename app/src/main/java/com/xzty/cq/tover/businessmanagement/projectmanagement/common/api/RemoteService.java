@@ -6,6 +6,7 @@ import com.xzty.cq.tover.businessmanagement.common.model.RspModel;
 import com.xzty.cq.tover.businessmanagement.department_of_management.project_task.project_task_detail.model.GetMeetingProjectDetail;
 import com.xzty.cq.tover.businessmanagement.department_of_management.project_task.project_task_detail.model.ReqMeetingProjectDetail;
 import com.xzty.cq.tover.businessmanagement.department_of_management.project_task.project_task_list.bean.ProjectTaskList_List;
+import com.xzty.cq.tover.businessmanagement.new_mainlist.model.NewRspProjectListModel;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.Emp;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.apply.RspApplyDetails;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.part.model.apply.RspApplyList;
@@ -505,5 +506,9 @@ public interface RemoteService {
     @POST("Androidweektask/projectmeetdetail")
     Observable<RspModel<GetMeetingProjectDetail>> oMPDGet(@Body ReqMeetingProjectDetail request);
 
+    //新的项目列表
+    @GET("Androiditem/androidblur")
+    Observable<RspModel<List<NewRspProjectListModel>>> getNewProject(@Query("employId") String id
+            , @Query("projectName") String name);
 
 }

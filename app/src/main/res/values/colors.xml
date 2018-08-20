@@ -32,4 +32,5 @@
     <color name="toolbar_background_color">#ffffff</color>
     <color name="project_task_detail_title1">#4d73ff</color>
     <color name="task_title_text_color">#161616</color>
+    <color name="top_background">#2597e8</color>
 </resources>

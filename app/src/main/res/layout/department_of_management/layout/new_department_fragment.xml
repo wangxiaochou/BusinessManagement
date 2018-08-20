@@ -7,29 +7,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<!--    <com.xzty.cq.tover.businessmanagement.projectmanagement.task.view.MyToolbar
-        android:id="@+id/toolbar_task_main"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
-        android:minHeight="?attr/actionBarSize"
-        android:elevation="@dimen/dp_10"
-        app:title=" "
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+    <!--    <com.xzty.cq.tover.businessmanagement.projectmanagement.task.view.MyToolbar
+            android:id="@+id/toolbar_task_main"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            android:minHeight="?attr/actionBarSize"
+            android:elevation="@dimen/dp_10"
+            app:title=" "
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
 
-    <android.support.v7.widget.Toolbar
+    <!--<android.support.v7.widget.Toolbar-->
+        <!--android:id="@+id/toolbar_task_main"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:background="@color/white"-->
+        <!--android:minHeight="?attr/actionBarSize"-->
+        <!--android:elevation="4dp"-->
+        <!--app:title="@string/task_homepage_title"-->
+        <!--app:titleTextColor="@color/task_title_text_black"-->
+        <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">-->
+    <!--</android.support.v7.widget.Toolbar>-->
+
+    <com.xzty.cq.tover.businessmanagement.common.view.TitleLayout
         android:id="@+id/toolbar_task_main"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
-        android:minHeight="?attr/actionBarSize"
-        android:elevation="4dp"
-        app:navigationIcon="@drawable/iv_back_btn_normal"
-        app:title="@string/task_homepage_title"
-        app:titleTextColor="@color/task_title_text_black"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        >
-    </android.support.v7.widget.Toolbar>
+        android:layout_height="wrap_content" />
 
     <ImageView
         android:id="@+id/iv_proj_task"
@@ -55,9 +58,9 @@
         android:id="@+id/tv_btn_proj_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
+        android:layout_marginStart="82dp"
         android:layout_marginTop="12dp"
-        android:text="项目任务"
+        android:text="周报表"
         android:textColor="@color/task_title_text_black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_assist_task" />
