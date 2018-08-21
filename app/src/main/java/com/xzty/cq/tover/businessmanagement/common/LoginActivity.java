@@ -12,8 +12,7 @@ import com.xzty.cq.tover.businessmanagement.common.account.LoginContract;
 import com.xzty.cq.tover.businessmanagement.common.account.LoginPresenter;
 import com.xzty.cq.tover.businessmanagement.common.data.StaticValue;
 import com.xzty.cq.tover.businessmanagement.common.factory.ActivityPresenter;
-import com.xzty.cq.tover.businessmanagement.common.main.MainActivity;
-import com.xzty.cq.tover.businessmanagement.new_mainlist.view.NewProjectListActivity;
+import com.xzty.cq.tover.businessmanagement.new_mainlist.NewViewPagerActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -62,7 +61,7 @@ public class LoginActivity extends ActivityPresenter<LoginContract.Presenter> im
     public void loginSuccess() {
         btn_login.setEnabled(true);
         finish();
-        this.startActivity(new Intent(this, NewProjectListActivity.class));
+        this.startActivity(new Intent(this, NewViewPagerActivity.class));
     }
 
 

@@ -18,11 +18,10 @@ import com.xzty.cq.tover.businessmanagement.common.data.StaticValue;
 import com.xzty.cq.tover.businessmanagement.common.factory.Account;
 import com.xzty.cq.tover.businessmanagement.common.huawei.HMSAgent;
 import com.xzty.cq.tover.businessmanagement.common.huawei.push.handler.GetTokenHandler;
-import com.xzty.cq.tover.businessmanagement.common.main.MainActivity;
 import com.xzty.cq.tover.businessmanagement.common.mipush.MyPushMessageReceiver;
 import com.xzty.cq.tover.businessmanagement.common.model.ReqLogin;
 import com.xzty.cq.tover.businessmanagement.common.utils.Rom;
-import com.xzty.cq.tover.businessmanagement.new_mainlist.view.NewProjectListActivity;
+import com.xzty.cq.tover.businessmanagement.new_mainlist.NewViewPagerActivity;
 
 import java.util.List;
 
@@ -139,7 +138,8 @@ public class LaunchActivity extends BaseActivity implements EasyPermissions.Perm
         //是否存在账号密码
         if (!TextUtils.isEmpty(model.getUsername()) || !TextUtils.isEmpty(model.getUsername())) {
             finish();
-            startActivity(new Intent(LaunchActivity.this, NewProjectListActivity.class));
+//            startActivity(new Intent(LaunchActivity.this, NewProjectListActivity.class));
+            startActivity(new Intent(LaunchActivity.this, NewViewPagerActivity.class));
         } else {
             finish();
             startActivity(new Intent(LaunchActivity.this, LoginActivity.class));

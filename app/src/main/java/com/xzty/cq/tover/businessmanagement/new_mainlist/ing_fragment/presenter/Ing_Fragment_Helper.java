@@ -1,4 +1,4 @@
-package com.xzty.cq.tover.businessmanagement.new_mainlist.presenter;
+package com.xzty.cq.tover.businessmanagement.new_mainlist.ing_fragment.presenter;
 
 import android.util.Log;
 
@@ -16,14 +16,14 @@ import rx.schedulers.Schedulers;
 
 /**
  * author wl
- * Created 2018/08/20
- * explain 首页新项目列表Helper文件
+ * Created 2018/08/21
+ * explain 首页新项目列表Ing_Fragment_Helper
  */
 
-public class NewProjectListHelper {
+public class Ing_Fragment_Helper {
 
     public static void search(final String id, String name,
-                              final NewProjectListPresenter callback) {
+                              final Ing_Fragment_Presenter callback) {
         RemoteService service = NetWork.remote(RemoteService.class);
         Subscription subscription = service.getNewProject(id, name).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<RspModel<List<NewRspProjectListModel>>>() {
             @Override

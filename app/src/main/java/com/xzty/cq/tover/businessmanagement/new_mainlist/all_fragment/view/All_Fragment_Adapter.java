@@ -1,4 +1,4 @@
-package com.xzty.cq.tover.businessmanagement.new_mainlist.view;
+package com.xzty.cq.tover.businessmanagement.new_mainlist.all_fragment.view;
 
 import android.support.annotation.Nullable;
 
@@ -11,13 +11,13 @@ import java.util.List;
 
 /**
  * author wl
- * Created 2018/08/20
- * explain 新项目列表recyclerview的adapter文件
+ * Created 2018/08/21
+ * explain 首页新项目列表All_Fragment_Adapter
  */
 
-public class NewPartProjactListAdapter extends BaseQuickAdapter<NewRspProjectListModel, BaseViewHolder> {
+public class All_Fragment_Adapter extends BaseQuickAdapter<NewRspProjectListModel, BaseViewHolder> {
 
-    public NewPartProjactListAdapter(int layoutResId, @Nullable List<NewRspProjectListModel> data) {
+    public All_Fragment_Adapter(int layoutResId, @Nullable List<NewRspProjectListModel> data) {
         super(layoutResId, data);
     }
 

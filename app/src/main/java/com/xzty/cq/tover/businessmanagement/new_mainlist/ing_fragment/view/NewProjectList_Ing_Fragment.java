@@ -1,28 +1,24 @@
-package com.xzty.cq.tover.businessmanagement.new_mainlist.view;
+package com.xzty.cq.tover.businessmanagement.new_mainlist.ing_fragment.view;
 
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xzty.cq.tover.businessmanagement.R;
+import com.xzty.cq.tover.businessmanagement.common.app.BaseFragment;
 import com.xzty.cq.tover.businessmanagement.common.factory.Account;
-import com.xzty.cq.tover.businessmanagement.common.factory.ActivityPresenter;
 import com.xzty.cq.tover.businessmanagement.new_bottomnavigation.NewBottomNavigation_Activity;
-import com.xzty.cq.tover.businessmanagement.new_mainlist.contract.NewProjectListContract;
+import com.xzty.cq.tover.businessmanagement.new_mainlist.all_fragment.view.All_Fragment_Adapter;
+import com.xzty.cq.tover.businessmanagement.new_mainlist.ing_fragment.contract.Ing_Fragment_Contract;
+import com.xzty.cq.tover.businessmanagement.new_mainlist.ing_fragment.presenter.Ing_Fragment_Presenter;
 import com.xzty.cq.tover.businessmanagement.new_mainlist.model.NewRspProjectListModel;
-import com.xzty.cq.tover.businessmanagement.new_mainlist.presenter.NewProjectListPresenter;
-import com.xzty.cq.tover.businessmanagement.projectmanagement.view.CustomRefreshFoot;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.view.CustomRefreshHead;
 
 import java.util.List;
@@ -31,24 +27,18 @@ import butterknife.BindView;
 
 /**
  * author wl
- * Created 2018/08/20
- * explain 新项目列表Activity文件
+ * Created 2018/08/21
+ * explain 首页新项目列表NewProjectList_Ing_Fragment
  */
 
-public class NewProjectListActivity extends ActivityPresenter<NewProjectListContract.Presenter>
-        implements NewProjectListContract.View,BaseQuickAdapter.OnItemClickListener,View.OnClickListener{
-
-    @BindView(R.id.tv_toolbarTitle)
-    TextView tv_toolbarTitle;
+public class NewProjectList_Ing_Fragment extends BaseFragment
+        implements Ing_Fragment_Contract.View,BaseQuickAdapter.OnItemClickListener,View.OnClickListener{
 
     @BindView(R.id.swipeToLoadLayout)
     SwipeToLoadLayout swipeToLoadLayout;
 
     @BindView(R.id.swipe_refresh_header)
     CustomRefreshHead swipe_refresh_header;
-
-    @BindView(R.id.swipe_load_more_footer)
-    CustomRefreshFoot swipe_load_more_footer;
 
     @BindView(R.id.swipe_target)
     RecyclerView swipe_target;
@@ -59,43 +49,43 @@ public class NewProjectListActivity extends ActivityPresenter<NewProjectListCont
     @BindView(R.id.btn_search)
     Button btn_search;
 
-    private NewProjectListPresenter mPresenter = new NewProjectListPresenter(this);
+    private Ing_Fragment_Presenter mPresenter = new Ing_Fragment_Presenter(this);
 
     private RecyclerView.LayoutManager layoutManager;
 
-    private NewPartProjactListAdapter mAdapter;
+    private All_Fragment_Adapter mAdapter;
 
     //数据
     private List<NewRspProjectListModel> mList;
 
-    private long exitTime = 0;
-
     @Override
-    public int getContentLayoutId() {
-        return R.layout.new_mainlist;
+    public int getContentLayout() {
+        return R.layout.new_projectlist_ing_fragment;
     }
 
     @Override
-    protected void initWidget() {
-        super.initWidget();
-        tv_toolbarTitle.setText("项目列表");
+    protected void initWidget(View root) {
+        super.initWidget(root);
         btn_search.setOnClickListener(this);
     }
 
     @Override
     protected void initData() {
         super.initData();
-        Account.load(this);
+        Account.load( this.getActivity());
         String projectName = et_projectName.getText().toString().trim();
         String projectId = Account.getemployId();
         mPresenter.search(projectId, projectName);
     }
 
     private void setAdapter(){
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayout.VERTICAL, false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this.getActivity(), LinearLayout.VERTICAL, false);
         swipe_target.setLayoutManager(layoutManager);
-        NewPartProjactListAdapter adapter = new NewPartProjactListAdapter(R.layout.part_projectlist_recyle_item,mList);
-        swipe_target.setAdapter(adapter);
+        Ing_Fragment_Adapter adapter = new Ing_Fragment_Adapter(R.layout.part_projectlist_recyle_item,mList);
+        if (adapter.getItem(mList.size()).getIsBuild() == 1){
+            swipe_target.setAdapter(adapter);
+        }
+
         adapter.setOnItemClickListener(this);
     }
 
@@ -104,7 +94,6 @@ public class NewProjectListActivity extends ActivityPresenter<NewProjectListCont
         mList = model;
         setAdapter();
         initRefresh();
-        initLoadMore();
     }
 
     @Override
@@ -116,8 +105,8 @@ public class NewProjectListActivity extends ActivityPresenter<NewProjectListCont
     }
 
     @Override
-    protected NewProjectListContract.Presenter initPresenter() {
-        return new NewProjectListPresenter(this);
+    public void setPresenter(Ing_Fragment_Contract.Presenter presenter) {
+
     }
 
     /**
@@ -125,22 +114,9 @@ public class NewProjectListActivity extends ActivityPresenter<NewProjectListCont
      */
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        Account.savaProjectId(NewProjectListActivity.this,mList.get(position).getProjectId() + "");
+        Account.savaProjectId(NewProjectList_Ing_Fragment.this.getActivity(),mList.get(position).getProjectId() + "");
 //        startActivity(new Intent(NewProjectListActivity.this, ManageActivity.class));
-        startActivity(new Intent(NewProjectListActivity.this, NewBottomNavigation_Activity.class));
-    }
-
-    /**
-     * 上拉加载更多
-     */
-    private void initLoadMore() {
-        swipeToLoadLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore() {
-                mAdapter.notifyDataSetChanged();
-                swipeToLoadLayout.setLoadingMore(false);
-            }
-        });
+        startActivity(new Intent(NewProjectList_Ing_Fragment.this.getActivity(), NewBottomNavigation_Activity.class));
     }
 
     /**
@@ -166,21 +142,4 @@ public class NewProjectListActivity extends ActivityPresenter<NewProjectListCont
         String projectId = Account.getemployId();
         mPresenter.search(projectId, projectName);
     }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-            if ((System.currentTimeMillis() - exitTime) > 2000) {
-                Toast.makeText(this, "再点一次退出程序", Toast.LENGTH_SHORT).show();
-                exitTime = System.currentTimeMillis();
-            } else {
-                finish();
-                System.exit(0);
-            }
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
-
 }
