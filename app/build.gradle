@@ -54,7 +54,7 @@ dependencies {
     //permissions
     implementation 'pub.devrel:easypermissions:1.2.0'
     //状态栏
-    implementation 'com.githang:status-bar-compat:0.3'
+    implementation 'com.githang:status-bar-compat:0.7'
     //BRVAH
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.38'
     //刷新框架

@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xzty.cq.tover.businessmanagement.R;
@@ -18,7 +17,6 @@ import com.xzty.cq.tover.businessmanagement.new_bottomnavigation.NewBottomNaviga
 import com.xzty.cq.tover.businessmanagement.new_mainlist.all_fragment.contract.All_Fragment_Contract;
 import com.xzty.cq.tover.businessmanagement.new_mainlist.all_fragment.presenter.All_Fragment_Presenter;
 import com.xzty.cq.tover.businessmanagement.new_mainlist.model.NewRspProjectListModel;
-import com.xzty.cq.tover.businessmanagement.projectmanagement.view.CustomRefreshHead;
 
 import java.util.List;
 
@@ -36,8 +34,8 @@ public class NewProjectList_All_Fragment extends BaseFragment
     @BindView(R.id.swipeToLoadLayout)
     SwipeToLoadLayout swipeToLoadLayout;
 
-    @BindView(R.id.swipe_refresh_header)
-    CustomRefreshHead swipe_refresh_header;
+//    @BindView(R.id.swipe_refresh_header)
+//    CustomRefreshHead swipe_refresh_header;
 
     @BindView(R.id.swipe_target)
     RecyclerView swipe_target;
@@ -89,7 +87,7 @@ public class NewProjectList_All_Fragment extends BaseFragment
     public void success(List<NewRspProjectListModel> model) {
         mList = model;
         setAdapter();
-        initRefresh();
+//        initRefresh();
     }
 
     @Override
@@ -115,18 +113,18 @@ public class NewProjectList_All_Fragment extends BaseFragment
         startActivity(new Intent(NewProjectList_All_Fragment.this.getActivity(), NewBottomNavigation_Activity.class));
     }
 
-    /**
-     * 下拉刷新
-     */
-    private void initRefresh() {
-        swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mAdapter.notifyDataSetChanged();
-                swipeToLoadLayout.setRefreshing(false);
-            }
-        });
-    }
+//    /**
+//     * 下拉刷新
+//     */
+//    private void initRefresh() {
+//        swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                mAdapter.notifyDataSetChanged();
+//                swipeToLoadLayout.setRefreshing(false);
+//            }
+//        });
+//    }
 
     /**
      * 搜索的点击事件

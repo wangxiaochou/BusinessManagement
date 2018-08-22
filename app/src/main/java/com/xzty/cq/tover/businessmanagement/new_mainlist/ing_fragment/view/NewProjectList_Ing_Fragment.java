@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xzty.cq.tover.businessmanagement.R;
@@ -20,7 +19,6 @@ import com.xzty.cq.tover.businessmanagement.new_mainlist.all_fragment.view.All_F
 import com.xzty.cq.tover.businessmanagement.new_mainlist.ing_fragment.contract.Ing_Fragment_Contract;
 import com.xzty.cq.tover.businessmanagement.new_mainlist.ing_fragment.presenter.Ing_Fragment_Presenter;
 import com.xzty.cq.tover.businessmanagement.new_mainlist.model.NewRspProjectListModel;
-import com.xzty.cq.tover.businessmanagement.projectmanagement.view.CustomRefreshHead;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +37,8 @@ public class NewProjectList_Ing_Fragment extends BaseFragment
     @BindView(R.id.swipeToLoadLayout)
     SwipeToLoadLayout swipeToLoadLayout;
 
-    @BindView(R.id.swipe_refresh_header)
-    CustomRefreshHead swipe_refresh_header;
+//    @BindView(R.id.swipe_refresh_header)
+//    CustomRefreshHead swipe_refresh_header;
 
     @BindView(R.id.swipe_target)
     RecyclerView swipe_target;
@@ -83,11 +81,11 @@ public class NewProjectList_Ing_Fragment extends BaseFragment
     private void setAdapter(){
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getActivity(), LinearLayout.VERTICAL, false);
         swipe_target.setLayoutManager(layoutManager);
-        List<NewRspProjectListModel> inBuild = new ArrayList<NewRspProjectListModel>();
-        Log.e("数据亮",mList.size()+"");
-        for (NewRspProjectListModel model2:this.mList
-                ) {
 
+        //判断项目是否为在建项目
+        List<NewRspProjectListModel> inBuild = new ArrayList<NewRspProjectListModel>();
+        Log.e("数据量",mList.size()+"");
+        for (NewRspProjectListModel model2:this.mList) {
             if (model2 != null){
                 Log.e("是都在建",model2.toString());
                 if (model2.getIsBuild() != 1){
@@ -110,7 +108,7 @@ public class NewProjectList_Ing_Fragment extends BaseFragment
     public void success(List<NewRspProjectListModel> model) {
         mList = model;
         setAdapter();
-        initRefresh();
+//        initRefresh();
     }
 
     @Override
@@ -136,18 +134,18 @@ public class NewProjectList_Ing_Fragment extends BaseFragment
         startActivity(new Intent(NewProjectList_Ing_Fragment.this.getActivity(), NewBottomNavigation_Activity.class));
     }
 
-    /**
-     * 下拉刷新
-     */
-    private void initRefresh() {
-        swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mAdapter.notifyDataSetChanged();
-                swipeToLoadLayout.setRefreshing(false);
-            }
-        });
-    }
+//    /**
+//     * 下拉刷新
+//     */
+//    private void initRefresh() {
+//        swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                mAdapter.notifyDataSetChanged();
+//                swipeToLoadLayout.setRefreshing(false);
+//            }
+//        });
+//    }
 
     /**
      * 搜索的点击事件

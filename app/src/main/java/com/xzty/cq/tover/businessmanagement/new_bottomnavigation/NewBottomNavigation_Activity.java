@@ -41,9 +41,9 @@ public class NewBottomNavigation_Activity extends BaseActivity implements Bottom
         // 初始化底部辅助工具类
         mNavHelper = new NavHelper<>(this, R.id.container, getSupportFragmentManager(), this);
         mNavHelper
-                .add(R.id.part, new NavHelper.Tab<Integer>(Part_Fragment.class, R.string.title_home))
+                .add(R.id.part, new NavHelper.Tab<Integer>(Department_Fragment.class, R.string.title_home))
                 .add(R.id.tool, new NavHelper.Tab<Integer>(Tool_Fragment.class, R.string.title_manage))
-                .add(R.id.department_manage, new NavHelper.Tab<Integer>(Department_Fragment.class, R.string.title_finance));
+                .add(R.id.department_manage, new NavHelper.Tab<Integer>(Part_Fragment.class, R.string.title_finance));
         mNavigation.setOnNavigationItemSelectedListener(this);
         //禁止所有动画
         mNavigation.enableAnimation(false);

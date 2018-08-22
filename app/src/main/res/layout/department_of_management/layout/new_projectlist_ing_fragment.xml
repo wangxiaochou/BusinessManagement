@@ -47,11 +47,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.xzty.cq.tover.businessmanagement.projectmanagement.view.CustomRefreshHead
-            android:id="@id/swipe_refresh_header"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center" />
+        <!--<com.xzty.cq.tover.businessmanagement.projectmanagement.view.CustomRefreshHead-->
+            <!--android:id="@id/swipe_refresh_header"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:gravity="center" />-->
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/swipe_target"

@@ -1,11 +1,13 @@
 package com.xzty.cq.tover.businessmanagement.common;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.githang.statusbar.StatusBarCompat;
 import com.xiaomi.mipush.sdk.MiPushClient;
 import com.xzty.cq.tover.businessmanagement.R;
 import com.xzty.cq.tover.businessmanagement.common.account.LoginContract;
@@ -26,11 +28,14 @@ public class LoginActivity extends ActivityPresenter<LoginContract.Presenter> im
     @BindView(R.id.et_password)
     EditText et_password;
 
+    private int white = Color.parseColor("#ffffff");
 
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_login;
     }
+
+
 
     @Override
     protected LoginContract.Presenter initPresenter() {
