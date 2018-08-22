@@ -531,4 +531,10 @@ public class NewRspProjectListModel {
         this.oaProjectId = oaProjectId;
     }
 
+    @Override
+    public String toString() {
+        return "NewRspProjectListModel{" +
+                "isBuild=" + isBuild +
+                '}';
+    }
 }

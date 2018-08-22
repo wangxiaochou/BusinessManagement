@@ -3,6 +3,7 @@ package com.xzty.cq.tover.businessmanagement.new_mainlist.ing_fragment.view;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +22,7 @@ import com.xzty.cq.tover.businessmanagement.new_mainlist.ing_fragment.presenter.
 import com.xzty.cq.tover.businessmanagement.new_mainlist.model.NewRspProjectListModel;
 import com.xzty.cq.tover.businessmanagement.projectmanagement.view.CustomRefreshHead;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -81,11 +83,26 @@ public class NewProjectList_Ing_Fragment extends BaseFragment
     private void setAdapter(){
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getActivity(), LinearLayout.VERTICAL, false);
         swipe_target.setLayoutManager(layoutManager);
-        Ing_Fragment_Adapter adapter = new Ing_Fragment_Adapter(R.layout.part_projectlist_recyle_item,mList);
-        if (adapter.getItem(mList.size()).getIsBuild() == 1){
-            swipe_target.setAdapter(adapter);
+        List<NewRspProjectListModel> inBuild = new ArrayList<NewRspProjectListModel>();
+        Log.e("数据亮",mList.size()+"");
+        for (NewRspProjectListModel model2:this.mList
+                ) {
+
+            if (model2 != null){
+                Log.e("是都在建",model2.toString());
+                if (model2.getIsBuild() != 1){
+                    Log.e("模型","未在建");
+                }else {
+                    inBuild.add(model2);
+                    Log.e("模型", "在建");
+                }
+            }else {
+                Log.e("模型", "空");
+            }
         }
 
+        Ing_Fragment_Adapter adapter = new Ing_Fragment_Adapter(R.layout.part_projectlist_recyle_item,inBuild);
+        swipe_target.setAdapter(adapter);
         adapter.setOnItemClickListener(this);
     }
 
