@@ -56,10 +56,19 @@
                     android:id="@+id/rv_task_manage_assist"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
+
+                <TextView
+                    android:id="@+id/tv_task_assist_nonetask"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" " />
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>
 
+
+
     </android.support.design.widget.CoordinatorLayout>
+
 
 </android.support.constraint.ConstraintLayout>

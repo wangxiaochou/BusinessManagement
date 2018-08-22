@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
@@ -38,6 +39,9 @@ public class ManageAssistTaskActivity extends ActivityPresenter<ManageAssistTask
 
     @BindView(R.id.rv_task_manage_assist)
     RecyclerView rv_task_manage_assist;
+
+    @BindView(R.id.tv_task_assist_nonetask)
+    TextView task_nonetask;
 
     ManageAssistTaskAdapter mstAdapter;
 
@@ -122,7 +126,7 @@ public class ManageAssistTaskActivity extends ActivityPresenter<ManageAssistTask
 
     @Override
     public void showError(String str) {
-        Toast.makeText(this,str,Toast.LENGTH_LONG).show();
+        task_nonetask.setText("该项目暂无协调任务");
     }
 
     @Override
