@@ -4,7 +4,7 @@
  * Created 2018/07/31
  * explain 项目任务列表布局文件
 -->
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -25,10 +25,8 @@
         android:id="@+id/rv_projecttasklist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/project_task_list_toolbar">
-
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/project_task_list_toolbar">
     </android.support.v7.widget.RecyclerView>
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
